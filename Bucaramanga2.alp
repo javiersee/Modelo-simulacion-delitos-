@@ -25,7 +25,9 @@
 	double x = file.readDouble();
 	double y = file.readDouble();
 	Solucion solucion =  add_solucion (tamanio); //create a new airplane agent
-	//solucion.setXY( x, y ); //place it to the initial location]]></StartupCode>
+	//solucion.setXY( x, y ); //place it to the initial location
+	
+	writeToLog( "Log created on " + ( new Date() ) );]]></StartupCode>
 			<Generic>false</Generic>
 			<GenericParameter>
 				<Id>1725569808281</Id>
@@ -212,7 +214,56 @@
  
 ]]></Action>
 				</Event>
+				<Event>
+					<Id>1727987107332</Id>
+					<Name><![CDATA[event]]></Name>
+					<X>-90</X><Y>510</Y>
+					<Label><X>10</X><Y>0</Y></Label>
+					<PublicFlag>false</PublicFlag>
+					<PresentationFlag>true</PresentationFlag>
+					<ShowLabel>true</ShowLabel>
+					<Properties TriggerType="rate" Mode="occuresOnce">
+						<Timeout Class="CodeUnitValue">
+							<Code><![CDATA[1]]></Code>
+							<Unit Class="TimeUnits"><![CDATA[HOUR]]></Unit>
+						</Timeout>
+						<Rate Class="CodeUnitValue">
+							<Code><![CDATA[1]]></Code>
+							<Unit Class="RateUnits"><![CDATA[PER_HOUR]]></Unit>
+						</Rate>
+						<OccurrenceAtTime>true</OccurrenceAtTime>
+						<OccurrenceDate>1728028800000</OccurrenceDate>
+						<OccurrenceTime Class="CodeUnitValue">
+							<Code><![CDATA[0]]></Code>
+							<Unit Class="TimeUnits"><![CDATA[HOUR]]></Unit>
+						</OccurrenceTime>
+						<RecurrenceCode Class="CodeUnitValue">
+							<Code><![CDATA[1]]></Code>
+							<Unit Class="TimeUnits"><![CDATA[HOUR]]></Unit>
+						</RecurrenceCode>
+						<Condition><![CDATA[false]]></Condition>
+					</Properties>
+					<Action><![CDATA[writeToLog( time() + " event occurred" );]]></Action>
+				</Event>
 			</Events>
+			<Functions>
+				<Function AccessType="default" StaticFunction="false">
+					<ReturnModificator>VOID</ReturnModificator>
+					<ReturnType><![CDATA[double]]></ReturnType>
+					<Id>1727987023944</Id>
+					<Name><![CDATA[writeToLog]]></Name>
+					<X>-100</X><Y>470</Y>
+					<Label><X>10</X><Y>0</Y></Label>
+					<PublicFlag>false</PublicFlag>
+					<PresentationFlag>true</PresentationFlag>
+					<ShowLabel>true</ShowLabel>
+					<Parameter>
+						<Name><![CDATA[info]]></Name>
+						<Type><![CDATA[String]]></Type>
+					</Parameter>
+					<Body><![CDATA[Resultado.println( info );]]></Body>
+				</Function>
+			</Functions>
 			<Connectivity>
 				<TextFile>
 					<Id>1727918539611</Id>
@@ -232,6 +283,24 @@
 					<CharsetName>null</CharsetName>
 					<Separators>
 ;</Separators>
+				</TextFile>
+				<TextFile>
+					<Id>1727986892057</Id>
+					<Name><![CDATA[Resultado]]></Name>
+					<X>-110</X><Y>430</Y>
+					<Label><X>0</X><Y>-5</Y></Label>
+					<PublicFlag>false</PublicFlag>
+					<PresentationFlag>true</PresentationFlag>
+					<ShowLabel>true</ShowLabel>
+					<FileType>FILE</FileType>
+					<Url><![CDATA[]]></Url>
+					<ResourceReference>
+						<PackageName><![CDATA[bucaramanga2]]></PackageName>
+						<ClassName><![CDATA[resultado.txt]]></ClassName>
+					</ResourceReference>
+					<FileMode>WRITE</FileMode>
+					<CharsetName>null</CharsetName>
+					<Separators></Separators>
 				</TextFile>
 			</Connectivity>
 			<AgentLinks>
@@ -2985,6 +3054,11 @@ countTime++;]]></Action>
 		</Resource>
 		<Resource>
 			<Path><![CDATA[data_entrada.csv]]></Path>
+			<ReferencedFromUserCode>false</ReferencedFromUserCode>
+			<Location>FILE_SYSTEM</Location>
+		</Resource>
+		<Resource>
+			<Path><![CDATA[resultado.txt]]></Path>
 			<ReferencedFromUserCode>false</ReferencedFromUserCode>
 			<Location>FILE_SYSTEM</Location>
 		</Resource>
