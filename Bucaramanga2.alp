@@ -901,9 +901,9 @@ PatrullaMoto moto = getNearestAgentByRoute(filter(main.patrullaMotos,
 					<Height>480</Height>
 					<GISShapes>
 					</GISShapes>
-					<Latitude>7.1142730710487125</Latitude>
-					<Longitude>-73.10854057431817</Longitude>
-					<Scale>30000</Scale>
+					<Latitude>7.109445541124959</Latitude>
+					<Longitude>-73.0925217166031</Longitude>
+					<Scale>100000</Scale>
 					<BorderColor>-4144960</BorderColor>
 					<FillColor>-1</FillColor>
 					<ShowTiles>true</ShowTiles>
@@ -1723,7 +1723,7 @@ PatrullaMoto moto = getNearestAgentByRoute(filter(main.patrullaMotos,
 						<UnitType><![CDATA[NONE]]></UnitType>
 						<SdArray>false</SdArray>
 						<DefaultValue Class="CodeValue">
-							<Code><![CDATA[main.cais.random()]]></Code>
+							<Code><![CDATA[main.cais.get(1)]]></Code>
 						</DefaultValue>
 						<ParameterEditor>
 							<Id>1725571334252</Id>
@@ -2866,9 +2866,6 @@ countTime++;]]></Action>
 					<Parameters>
 						<Parameter>
 							<Name><![CDATA[locationType]]></Name>
-							<Value Class="CodeValue">
-								<Code><![CDATA[self.LOCATION_GEO_PLACE]]></Code>
-							</Value>
 						</Parameter>
 						<Parameter>
 							<Name><![CDATA[locationX]]></Name>
@@ -3657,7 +3654,7 @@ countTime++;]]></Action>
 						<UnitType><![CDATA[NONE]]></UnitType>
 						<SdArray>false</SdArray>
 						<DefaultValue Class="CodeValue">
-							<Code><![CDATA[main.cais.random()]]></Code>
+							<Code><![CDATA[main.cais.get(0)]]></Code>
 						</DefaultValue>
 						<ParameterEditor>
 							<Id>1728429435896</Id>
