@@ -4101,12 +4101,7 @@ countTimeCar++;]]></Action>
 	</Experiments>
 	<ModelResources>
 		<Resource>
-			<Path><![CDATA[3d/car.dae]]></Path>
-			<ReferencedFromUserCode>false</ReferencedFromUserCode>
-			<Location>FILE_SYSTEM</Location>
-		</Resource>
-		<Resource>
-			<Path><![CDATA[3d/motorcycle.dae]]></Path>
+			<Path><![CDATA[DATA.xlsx]]></Path>
 			<ReferencedFromUserCode>false</ReferencedFromUserCode>
 			<Location>FILE_SYSTEM</Location>
 		</Resource>
@@ -4116,12 +4111,12 @@ countTimeCar++;]]></Action>
 			<Location>FILE_SYSTEM</Location>
 		</Resource>
 		<Resource>
-			<Path><![CDATA[3d/rider_position_2.dae]]></Path>
+			<Path><![CDATA[3d/motorcycle.dae]]></Path>
 			<ReferencedFromUserCode>false</ReferencedFromUserCode>
 			<Location>FILE_SYSTEM</Location>
 		</Resource>
 		<Resource>
-			<Path><![CDATA[DATA.xlsx]]></Path>
+			<Path><![CDATA[3d/rider_position_2.dae]]></Path>
 			<ReferencedFromUserCode>false</ReferencedFromUserCode>
 			<Location>FILE_SYSTEM</Location>
 		</Resource>
@@ -4132,6 +4127,11 @@ countTimeCar++;]]></Action>
 		</Resource>
 		<Resource>
 			<Path><![CDATA[resultado.txt]]></Path>
+			<ReferencedFromUserCode>false</ReferencedFromUserCode>
+			<Location>FILE_SYSTEM</Location>
+		</Resource>
+		<Resource>
+			<Path><![CDATA[3d/car.dae]]></Path>
 			<ReferencedFromUserCode>false</ReferencedFromUserCode>
 			<Location>FILE_SYSTEM</Location>
 		</Resource>
