@@ -4008,6 +4008,10 @@ countTimeCar++;]]></Action>
 			</TableImportSettings>
 		</ImportSettings>
 		<ExportSettings>
+			<ExportExcelResourceReference>
+				<PackageName><![CDATA[bucaramanga2]]></PackageName>
+				<ClassName><![CDATA[dsfdf.xlsx]]></ClassName>
+			</ExportExcelResourceReference>
 		</ExportSettings>
 	</Database>
 
@@ -4101,12 +4105,7 @@ countTimeCar++;]]></Action>
 	</Experiments>
 	<ModelResources>
 		<Resource>
-			<Path><![CDATA[DATA.xlsx]]></Path>
-			<ReferencedFromUserCode>false</ReferencedFromUserCode>
-			<Location>FILE_SYSTEM</Location>
-		</Resource>
-		<Resource>
-			<Path><![CDATA[3d/person.dae]]></Path>
+			<Path><![CDATA[3d/car.dae]]></Path>
 			<ReferencedFromUserCode>false</ReferencedFromUserCode>
 			<Location>FILE_SYSTEM</Location>
 		</Resource>
@@ -4116,7 +4115,17 @@ countTimeCar++;]]></Action>
 			<Location>FILE_SYSTEM</Location>
 		</Resource>
 		<Resource>
+			<Path><![CDATA[3d/person.dae]]></Path>
+			<ReferencedFromUserCode>false</ReferencedFromUserCode>
+			<Location>FILE_SYSTEM</Location>
+		</Resource>
+		<Resource>
 			<Path><![CDATA[3d/rider_position_2.dae]]></Path>
+			<ReferencedFromUserCode>false</ReferencedFromUserCode>
+			<Location>FILE_SYSTEM</Location>
+		</Resource>
+		<Resource>
+			<Path><![CDATA[DATA.xlsx]]></Path>
 			<ReferencedFromUserCode>false</ReferencedFromUserCode>
 			<Location>FILE_SYSTEM</Location>
 		</Resource>
@@ -4131,7 +4140,7 @@ countTimeCar++;]]></Action>
 			<Location>FILE_SYSTEM</Location>
 		</Resource>
 		<Resource>
-			<Path><![CDATA[3d/car.dae]]></Path>
+			<Path><![CDATA[dsfdf.xlsx]]></Path>
 			<ReferencedFromUserCode>false</ReferencedFromUserCode>
 			<Location>FILE_SYSTEM</Location>
 		</Resource>
