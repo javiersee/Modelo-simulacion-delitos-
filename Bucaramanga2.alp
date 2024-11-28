@@ -25,9 +25,10 @@
 	double x = file.readDouble();
 	double y = file.readDouble();
 	Solucion solucion =  add_solucion (tamanio); //create a new airplane agent
-	//solucion.setXY( x, y ); //place it to the initial location
+	solucion.setXY( x, y ); //place it to the initial location
 	
-	writeToLog( "Log created on " + ( new Date() ) );]]></StartupCode>
+	writeToLog( "Log created on " + ( new Date() ) );
+	Resultado.println( "Tiempo de llegada patrulla " + ( new Date() ) );]]></StartupCode>
 			<Generic>false</Generic>
 			<GenericParameter>
 				<Id>1725569808281</Id>
@@ -53,6 +54,14 @@
 					<Code><![CDATA[10]]></Code>
 					<Unit Class="SpeedUnits"><![CDATA[MPS]]></Unit>
 				</VelocityCode>
+				<OnArrival><![CDATA[/*if(true){
+	while ( cais.size() > 0 ){
+		remove_cais( cais.get(0));
+		}
+}
+*/]]></OnArrival>
+				<AfterStepCode><![CDATA[Resultado.println( "Tiempo de llegada patrulla " + ( new Date() ) );]]></AfterStepCode>
+				<BeforeStepCode><![CDATA[Resultado.println( "Tiempo de llegada patrulla " + ( new Date() ) );]]></BeforeStepCode>
 				<PhysicalLength Class="CodeUnitValue">
 					<Code><![CDATA[1]]></Code>
 					<Unit Class="LengthUnits"><![CDATA[METER]]></Unit>
@@ -122,7 +131,7 @@
 					<Id>1725570667839</Id>
 					<Name><![CDATA[numMotos]]></Name>
 					<X>380</X><Y>-80</Y>
-					<Label><X>10</X><Y>0</Y></Label>
+					<Label><X>10</X><Y>15</Y></Label>
 					<PublicFlag>false</PublicFlag>
 					<PresentationFlag>false</PresentationFlag>
 					<ShowLabel>true</ShowLabel>
@@ -131,7 +140,7 @@
 						<UnitType><![CDATA[NONE]]></UnitType>
 						<SdArray>false</SdArray>
 						<DefaultValue Class="CodeValue">
-							<Code><![CDATA[10]]></Code>
+							<Code><![CDATA[1]]></Code>
 						</DefaultValue>
 						<ParameterEditor>
 							<Id>1725570667837</Id>
@@ -145,7 +154,7 @@
 				<Variable Class="Parameter">
 					<Id>1728429504428</Id>
 					<Name><![CDATA[numCarros]]></Name>
-					<X>520</X><Y>-80</Y>
+					<X>530</X><Y>-80</Y>
 					<Label><X>10</X><Y>0</Y></Label>
 					<PublicFlag>false</PublicFlag>
 					<PresentationFlag>true</PresentationFlag>
@@ -155,7 +164,7 @@
 						<UnitType><![CDATA[NONE]]></UnitType>
 						<SdArray>false</SdArray>
 						<DefaultValue Class="CodeValue">
-							<Code><![CDATA[10]]></Code>
+							<Code><![CDATA[1]]></Code>
 						</DefaultValue>
 						<ParameterEditor>
 							<Id>1728429504426</Id>
@@ -245,8 +254,8 @@ PatrullaMoto moto = getNearestAgentByRoute(filter(main.patrullaMotos,
 				<Event>
 					<Id>1727987107332</Id>
 					<Name><![CDATA[event]]></Name>
-					<X>-90</X><Y>510</Y>
-					<Label><X>10</X><Y>0</Y></Label>
+					<X>-90</X><Y>530</Y>
+					<Label><X>-45</X><Y>-25</Y></Label>
 					<PublicFlag>false</PublicFlag>
 					<PresentationFlag>true</PresentationFlag>
 					<ShowLabel>true</ShowLabel>
@@ -271,7 +280,7 @@ PatrullaMoto moto = getNearestAgentByRoute(filter(main.patrullaMotos,
 						</RecurrenceCode>
 						<Condition><![CDATA[false]]></Condition>
 					</Properties>
-					<Action><![CDATA[writeToLog( time() + " event occurred" );]]></Action>
+					<Action><![CDATA[writeToLog( time() + " tiempo de llegada patrulla " );]]></Action>
 				</Event>
 				<Event>
 					<Id>1728431902667</Id>
@@ -306,6 +315,37 @@ PatrullaMoto moto = getNearestAgentByRoute(filter(main.patrullaMotos,
 	pC.jumpTo(pC.elCaiCar.getX(),
 			  pC.elCaiCar.getY());]]></Action>
 				</Event>
+				<Event>
+					<Id>1732824191539</Id>
+					<Name><![CDATA[nuevoCrimen]]></Name>
+					<X>-110</X><Y>150</Y>
+					<Label><X>10</X><Y>0</Y></Label>
+					<PublicFlag>false</PublicFlag>
+					<PresentationFlag>true</PresentationFlag>
+					<ShowLabel>true</ShowLabel>
+					<Properties TriggerType="rate" Mode="occuresOnce">
+						<Timeout Class="CodeUnitValue">
+							<Code><![CDATA[1]]></Code>
+							<Unit Class="TimeUnits"><![CDATA[HOUR]]></Unit>
+						</Timeout>
+						<Rate Class="CodeUnitValue">
+							<Code><![CDATA[1]]></Code>
+							<Unit Class="RateUnits"><![CDATA[PER_MINUTE]]></Unit>
+						</Rate>
+						<OccurrenceAtTime>true</OccurrenceAtTime>
+						<OccurrenceDate>1732867200000</OccurrenceDate>
+						<OccurrenceTime Class="CodeUnitValue">
+							<Code><![CDATA[0]]></Code>
+							<Unit Class="TimeUnits"><![CDATA[HOUR]]></Unit>
+						</OccurrenceTime>
+						<RecurrenceCode Class="CodeUnitValue">
+							<Code><![CDATA[1]]></Code>
+							<Unit Class="TimeUnits"><![CDATA[HOUR]]></Unit>
+						</RecurrenceCode>
+						<Condition><![CDATA[false]]></Condition>
+					</Properties>
+					<Action><![CDATA[add_crimes();]]></Action>
+				</Event>
 			</Events>
 			<Functions>
 				<Function AccessType="default" StaticFunction="false">
@@ -313,6 +353,7 @@ PatrullaMoto moto = getNearestAgentByRoute(filter(main.patrullaMotos,
 					<ReturnType><![CDATA[double]]></ReturnType>
 					<Id>1727987023944</Id>
 					<Name><![CDATA[writeToLog]]></Name>
+					<Description><![CDATA[Variable encargada de anotar el tiempo de salida]]></Description>
 					<X>-100</X><Y>470</Y>
 					<Label><X>10</X><Y>0</Y></Label>
 					<PublicFlag>false</PublicFlag>
@@ -322,7 +363,7 @@ PatrullaMoto moto = getNearestAgentByRoute(filter(main.patrullaMotos,
 						<Name><![CDATA[info]]></Name>
 						<Type><![CDATA[String]]></Type>
 					</Parameter>
-					<Body><![CDATA[Resultado.println( info );]]></Body>
+					<Body><![CDATA[Resultado.println(info);]]></Body>
 				</Function>
 			</Functions>
 			<Connectivity>
@@ -496,7 +537,7 @@ PatrullaMoto moto = getNearestAgentByRoute(filter(main.patrullaMotos,
 					</Parameters>
 					<ReplicationFlag>true</ReplicationFlag>
 					<Replication Class="CodeValue">
-						<Code><![CDATA[10]]></Code>
+						<Code><![CDATA[5]]></Code>
 					</Replication>
 					<CollectionType>ARRAY_LIST_BASED</CollectionType>
 					<InEnvironment>true</InEnvironment>	
@@ -510,12 +551,17 @@ PatrullaMoto moto = getNearestAgentByRoute(filter(main.patrullaMotos,
 					<LocationNameCode Class="CodeValue">
 						<Code><![CDATA[""]]></Code>
 					</LocationNameCode>
-					<InitializationType>LOAD_FROM_DATABASE</InitializationType>
+					<InitializationType>SPECIFIED_NUMBER</InitializationType>
 					<InitializationDatabaseTableQuery>
 						<TableReference>
 							<PackageName><![CDATA[bucaramanga2]]></PackageName>
 							<ClassName><![CDATA[robos]]></ClassName>
 						</TableReference>
+						<Condition>
+							<ColumnReference>
+							</ColumnReference>
+							<Operator>EQUALS</Operator>
+						</Condition>
 					</InitializationDatabaseTableQuery>
 					<InitializationDatabaseType>ONE_AGENT_PER_DATABASE_RECORD</InitializationDatabaseType>
 					<QuantityColumn>
@@ -609,12 +655,13 @@ PatrullaMoto moto = getNearestAgentByRoute(filter(main.patrullaMotos,
 						<Name><![CDATA[patrullaMotosCrime]]></Name>
 						<Type>count</Type>
 						<Expression><![CDATA[]]></Expression>
-						<Condition><![CDATA[item.inState(PatrullaMoto.enDelito)]]></Condition>
+						<Condition><![CDATA[item.inState(PatrullaMoto.enDelito)
+]]></Condition>
 					</StatisticsItem>
 					<InEnvironment>true</InEnvironment>	
 					<InitialSpeedCode Class="CodeUnitValue">
 						<Code><![CDATA[.6]]></Code>
-						<Unit Class="SpeedUnits"><![CDATA[KPH]]></Unit>
+						<Unit Class="SpeedUnits"><![CDATA[MPS]]></Unit>
 					</InitialSpeedCode>
 					<InitialLocationType>XYZ</InitialLocationType>
 					<ColumnCode Class="CodeValue">
@@ -1797,7 +1844,10 @@ if(countTime >= 1)
 					<PresentationFlag>true</PresentationFlag>
 					<ShowLabel>true</ShowLabel>
 					<Properties Width="100" Height="40">
-						<FillColor/>
+						<EntryAction><![CDATA[if(true){
+moveTo(elCai);
+}]]></EntryAction>
+						<FillColor>-256</FillColor>
 					</Properties>
 				</StatechartElement>
 				<StatechartElement Class="EntryPoint" ParentState="ROOT_NODE">
@@ -1884,7 +1934,7 @@ countTime++;]]></Action>
 					<Label><X>10</X><Y>0</Y></Label>
 					<PublicFlag>false</PublicFlag>
 					<PresentationFlag>true</PresentationFlag>
-					<ShowLabel>false</ShowLabel>
+					<ShowLabel>true</ShowLabel>
 					<Points>
 						<Point><X>0</X><Y>0</Y></Point>
 						<Point><X>120</X><Y>-110</Y></Point>
@@ -1904,8 +1954,8 @@ countTime++;]]></Action>
 						</Rate>
 						<MessageType><![CDATA[String]]></MessageType>
 						<DefaultTransition>true</DefaultTransition>
-						<FilterType><![CDATA[equalsTo]]></FilterType>
-						<EqualsExpression><![CDATA["ListoElPollo"]]></EqualsExpression>
+						<FilterType><![CDATA[satisfies]]></FilterType>
+						<EqualsExpression><![CDATA["crimenResuelto"]]></EqualsExpression>
 						<SatisfiesExpression><![CDATA[true]]></SatisfiesExpression>
 					</Properties>	
 				</StatechartElement>
@@ -1923,6 +1973,7 @@ countTime++;]]></Action>
 					</Points>
 					<IconOffset>80.0</IconOffset>
 					<Properties Source="1725574492188" Target="1725572835023" Trigger="arrival">
+						<Action><![CDATA[moveTo(elCai);]]></Action>
 						<Timeout Class="CodeUnitValue">
 							<Code><![CDATA[1]]></Code>
 							<Unit Class="TimeUnits"><![CDATA[HOUR]]></Unit>
@@ -3689,6 +3740,10 @@ if(countTimeCar >= 1)
 					<PresentationFlag>true</PresentationFlag>
 					<ShowLabel>true</ShowLabel>
 					<Properties Width="100" Height="40">
+						<EntryAction><![CDATA[if(true){
+moveTo(elCaiCar);
+
+}]]></EntryAction>
 						<FillColor/>
 					</Properties>
 				</StatechartElement>
@@ -3796,8 +3851,8 @@ countTimeCar++;]]></Action>
 						</Rate>
 						<MessageType><![CDATA[String]]></MessageType>
 						<DefaultTransition>true</DefaultTransition>
-						<FilterType><![CDATA[equalsTo]]></FilterType>
-						<EqualsExpression><![CDATA["ListoElPollo"]]></EqualsExpression>
+						<FilterType><![CDATA[satisfies]]></FilterType>
+						<EqualsExpression><![CDATA[true]]></EqualsExpression>
 						<SatisfiesExpression><![CDATA[true]]></SatisfiesExpression>
 					</Properties>	
 				</StatechartElement>
@@ -4099,6 +4154,43 @@ countTimeCar++;]]></Action>
 			<BypassInitialScreen>true</BypassInitialScreen>
 		</SimulationExperiment>	
 	</Experiments>
+	<ModelResources>
+		<Resource>
+			<Path><![CDATA[3d/car.dae]]></Path>
+			<ReferencedFromUserCode>false</ReferencedFromUserCode>
+			<Location>FILE_SYSTEM</Location>
+		</Resource>
+		<Resource>
+			<Path><![CDATA[3d/motorcycle.dae]]></Path>
+			<ReferencedFromUserCode>false</ReferencedFromUserCode>
+			<Location>FILE_SYSTEM</Location>
+		</Resource>
+		<Resource>
+			<Path><![CDATA[3d/person.dae]]></Path>
+			<ReferencedFromUserCode>false</ReferencedFromUserCode>
+			<Location>FILE_SYSTEM</Location>
+		</Resource>
+		<Resource>
+			<Path><![CDATA[3d/rider_position_2.dae]]></Path>
+			<ReferencedFromUserCode>false</ReferencedFromUserCode>
+			<Location>FILE_SYSTEM</Location>
+		</Resource>
+		<Resource>
+			<Path><![CDATA[DATA.xlsx]]></Path>
+			<ReferencedFromUserCode>false</ReferencedFromUserCode>
+			<Location>FILE_SYSTEM</Location>
+		</Resource>
+		<Resource>
+			<Path><![CDATA[data_entrada.csv]]></Path>
+			<ReferencedFromUserCode>false</ReferencedFromUserCode>
+			<Location>FILE_SYSTEM</Location>
+		</Resource>
+		<Resource>
+			<Path><![CDATA[resultado.txt]]></Path>
+			<ReferencedFromUserCode>false</ReferencedFromUserCode>
+			<Location>FILE_SYSTEM</Location>
+		</Resource>
+	</ModelResources>
     <RequiredLibraryReference>
 		<LibraryName><![CDATA[com.anylogic.libraries.modules.markup_descriptors]]></LibraryName>
 		<VersionMajor>1</VersionMajor>
