@@ -28,8 +28,11 @@
 	solucion.setXY( numeropatrullas, numeropatrullas ); //place it to the initial location
 	numMotos= (int)numeroMotos;
 	numCarros=(int) numeropatrullas;
+	boolean[] solucinBinaria = new boolean[(int)tamanio];
 	writeToLog( "Log created on " + ( new Date() ) );
-	Resultado.println( "Tiempo de llegada patrulla " + ( new Date() ) );]]></StartupCode>
+	for (boolean bit : solucinBinaria) {
+		Resultado.println( ((bit ? 1 : 0) + " "));
+        }]]></StartupCode>
 			<Generic>false</Generic>
 			<GenericParameter>
 				<Id>1725569808281</Id>
@@ -61,8 +64,8 @@
 		}
 }
 */]]></OnArrival>
-				<AfterStepCode><![CDATA[Resultado.println( "Tiempo de llegada patrulla " + ( new Date() ) );]]></AfterStepCode>
-				<BeforeStepCode><![CDATA[Resultado.println( "Tiempo de llegada patrulla " + ( new Date() ) );]]></BeforeStepCode>
+				<BeforeStepCode><![CDATA[
+]]></BeforeStepCode>
 				<PhysicalLength Class="CodeUnitValue">
 					<Code><![CDATA[1]]></Code>
 					<Unit Class="LengthUnits"><![CDATA[METER]]></Unit>
@@ -260,7 +263,7 @@ PatrullaMoto moto = getNearestAgentByRoute(filter(main.patrullaMotos,
 					<PublicFlag>false</PublicFlag>
 					<PresentationFlag>true</PresentationFlag>
 					<ShowLabel>true</ShowLabel>
-					<Properties TriggerType="rate" Mode="occuresOnce">
+					<Properties TriggerType="condition" Mode="occuresOnce">
 						<Timeout Class="CodeUnitValue">
 							<Code><![CDATA[1]]></Code>
 							<Unit Class="TimeUnits"><![CDATA[HOUR]]></Unit>
@@ -281,8 +284,8 @@ PatrullaMoto moto = getNearestAgentByRoute(filter(main.patrullaMotos,
 						</RecurrenceCode>
 						<Condition><![CDATA[false]]></Condition>
 					</Properties>
-					<Action><![CDATA[writeToLog( time() + " tiempo de llegada patrulla " );
-//writeToLog( solucion.tamanio() + " cai seleccionado " );]]></Action>
+					<Action><![CDATA[//writeToLog( time() + " tiempo de llegada patrulla " );
+]]></Action>
 				</Event>
 				<Event>
 					<Id>1728431902667</Id>
