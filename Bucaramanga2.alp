@@ -134,8 +134,8 @@
 				<Variable Class="Parameter">
 					<Id>1725570667839</Id>
 					<Name><![CDATA[numMotos]]></Name>
-					<X>130</X><Y>-100</Y>
-					<Label><X>10</X><Y>15</Y></Label>
+					<X>380</X><Y>-100</Y>
+					<Label><X>20</X><Y>0</Y></Label>
 					<PublicFlag>false</PublicFlag>
 					<PresentationFlag>true</PresentationFlag>
 					<ShowLabel>true</ShowLabel>
@@ -159,7 +159,7 @@
 					<Id>1728429504428</Id>
 					<Name><![CDATA[numCarros]]></Name>
 					<X>540</X><Y>-90</Y>
-					<Label><X>20</X><Y>-20</Y></Label>
+					<Label><X>10</X><Y>0</Y></Label>
 					<PublicFlag>false</PublicFlag>
 					<PresentationFlag>true</PresentationFlag>
 					<ShowLabel>true</ShowLabel>
@@ -506,12 +506,22 @@ PatrullaMoto moto = getNearestAgentByRoute(filter(main.patrullaMotos,
 						</Item>
 						<Item>
 							<Key>
-								FAKE_PARAMETER_GIS_LOCATION_NAME_xjal
+								FAKE_PARAMETER_GIS_LOCATION_LATITUDE_xjal
 							</Key>
 							<Value>
 								<PackageName><![CDATA[bucaramanga2]]></PackageName>
 								<ClassName><![CDATA[cai]]></ClassName>
-								<ItemName><![CDATA[location]]></ItemName>
+								<ItemName><![CDATA[latitud]]></ItemName>
+							</Value>
+						</Item>
+						<Item>
+							<Key>
+								FAKE_PARAMETER_GIS_LOCATION_LONGITUDE_xjal
+							</Key>
+							<Value>
+								<PackageName><![CDATA[bucaramanga2]]></PackageName>
+								<ClassName><![CDATA[cai]]></ClassName>
+								<ItemName><![CDATA[longitud]]></ItemName>
 							</Value>
 						</Item>	
 					</ParameterToDatabaseColumnMapping>
@@ -557,17 +567,12 @@ PatrullaMoto moto = getNearestAgentByRoute(filter(main.patrullaMotos,
 					<LocationNameCode Class="CodeValue">
 						<Code><![CDATA[""]]></Code>
 					</LocationNameCode>
-					<InitializationType>SPECIFIED_NUMBER</InitializationType>
+					<InitializationType>LOAD_FROM_DATABASE</InitializationType>
 					<InitializationDatabaseTableQuery>
 						<TableReference>
 							<PackageName><![CDATA[bucaramanga2]]></PackageName>
 							<ClassName><![CDATA[robos]]></ClassName>
 						</TableReference>
-						<Condition>
-							<ColumnReference>
-							</ColumnReference>
-							<Operator>EQUALS</Operator>
-						</Condition>
 					</InitializationDatabaseTableQuery>
 					<InitializationDatabaseType>ONE_AGENT_PER_DATABASE_RECORD</InitializationDatabaseType>
 					<QuantityColumn>
@@ -666,7 +671,7 @@ PatrullaMoto moto = getNearestAgentByRoute(filter(main.patrullaMotos,
 					</StatisticsItem>
 					<InEnvironment>true</InEnvironment>	
 					<InitialSpeedCode Class="CodeUnitValue">
-						<Code><![CDATA[.6]]></Code>
+						<Code><![CDATA[.5]]></Code>
 						<Unit Class="SpeedUnits"><![CDATA[MPS]]></Unit>
 					</InitialSpeedCode>
 					<InitialLocationType>XYZ</InitialLocationType>
@@ -685,17 +690,6 @@ PatrullaMoto moto = getNearestAgentByRoute(filter(main.patrullaMotos,
 							<PackageName><![CDATA[bucaramanga2]]></PackageName>
 							<ClassName><![CDATA[cai]]></ClassName>
 						</TableReference>
-						<Condition>
-							<ColumnReference>
-								<PackageName><![CDATA[bucaramanga2]]></PackageName>
-								<ClassName><![CDATA[cai]]></ClassName>
-								<ItemName><![CDATA[n_movil]]></ItemName>
-							</ColumnReference>
-							<Value Class="CodeValue">
-								<Code><![CDATA[numMotos]]></Code>
-							</Value>
-							<Operator>EQUALS</Operator>
-						</Condition>
 					</InitializationDatabaseTableQuery>
 					<InitializationDatabaseType>ONE_AGENT_PER_DATABASE_RECORD</InitializationDatabaseType>
 					<QuantityColumn>
@@ -721,7 +715,6 @@ PatrullaMoto moto = getNearestAgentByRoute(filter(main.patrullaMotos,
 					<PublicFlag>false</PublicFlag>
 					<PresentationFlag>true</PresentationFlag>
 					<ShowLabel>true</ShowLabel>
-					<PresentationId>1727923290762</PresentationId>
 					<ActiveObjectClass>
 						<PackageName><![CDATA[bucaramanga2]]></PackageName>
 						<ClassName><![CDATA[Solucion]]></ClassName>
@@ -913,24 +906,6 @@ PatrullaMoto moto = getNearestAgentByRoute(filter(main.patrullaMotos,
 
 
 				</GISMap>
-				<EmbeddedObjectPresentation>
-					<Id>1727923290762</Id>
-					<Name><![CDATA[solucion_presentation]]></Name>
-					<X>0</X><Y>0</Y>
-					<Label><X>10</X><Y>0</Y></Label>
-					<PublicFlag>true</PublicFlag>
-					<PresentationFlag>true</PresentationFlag>
-					<ShowLabel>false</ShowLabel>
-					<DrawMode>SHAPE_DRAW_2D3D</DrawMode>
-					<EmbeddedIcon>false</EmbeddedIcon>
-					<Z>0</Z>
-					<Rotation>0.0</Rotation>
-					<ScaleType>AUTOMATICALLY_CALCULATED</ScaleType>
-					<GISScaleForRealEmbeddedObjectPresentationSize>1000</GISScaleForRealEmbeddedObjectPresentationSize>
-					<GISScaleForFixedEmbeddedObjectPresentationSize>1000000000</GISScaleForFixedEmbeddedObjectPresentationSize>
-					<Latitude>7.111085599307612</Latitude>
-					<Longitude>-73.16512455355321</Longitude>
-				</EmbeddedObjectPresentation>
 			</Presentation>
 
 				</Level>
@@ -1837,6 +1812,8 @@ if(countTime >= 1)
 	varTime = time;
 	//empieza conteo de tiempo
 }
+
+
 ]]></EntryAction>
 						<FillColor/>
 					</Properties>
@@ -1979,7 +1956,6 @@ countTime++;]]></Action>
 					</Points>
 					<IconOffset>80.0</IconOffset>
 					<Properties Source="1725574492188" Target="1725572835023" Trigger="arrival">
-						<Action><![CDATA[moveTo(elCai);]]></Action>
 						<Timeout Class="CodeUnitValue">
 							<Code><![CDATA[1]]></Code>
 							<Unit Class="TimeUnits"><![CDATA[HOUR]]></Unit>
@@ -2674,7 +2650,9 @@ countTime++;]]></Action>
 						<Parameter>
 							<Name><![CDATA[onExit]]></Name>
 							<Value Class="CodeValue">
-								<Code><![CDATA[send("ListoElPollo",agent);]]></Code>
+								<Code><![CDATA[send("ListoElPollo",agent);
+main.remove_crimes(this); //elimina el agente crimen
+//main.removeAgentFromContents(agent)]]></Code>
 							</Value>
 						</Parameter>
 					</Parameters>
@@ -2957,7 +2935,9 @@ countTime++;]]></Action>
 						<Parameter>
 							<Name><![CDATA[onExit]]></Name>
 							<Value Class="CodeValue">
-								<Code><![CDATA[send("ListoElPollo",agent);]]></Code>
+								<Code><![CDATA[send("ListoElPollo",agent);
+main.remove_crimes(this);
+//elimina el agent crimen]]></Code>
 							</Value>
 						</Parameter>
 					</Parameters>
@@ -3751,7 +3731,6 @@ if(countTimeCar >= 1)
 					<Properties Width="100" Height="40">
 						<EntryAction><![CDATA[if(true){
 moveTo(elCaiCar);
-
 }]]></EntryAction>
 						<FillColor/>
 					</Properties>

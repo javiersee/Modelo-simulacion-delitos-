@@ -1,9 +1,13 @@
-Log created on Thu Dec 12 14:17:48 COT 2024
-Tiempo de llegada patrulla Thu Dec 12 14:17:49 COT 2024
-4.538969517399305 tiempo de llegada patrulla 
-5.154420621872332 tiempo de llegada patrulla 
-5.180935032763276 tiempo de llegada patrulla 
-6.585692580019621 tiempo de llegada patrulla 
-7.515775725711309 tiempo de llegada patrulla 
-9.04086272455858 tiempo de llegada patrulla 
-9.880176489743931 tiempo de llegada patrulla 
+Log created on Thu Dec 12 17:05:50 COT 2024
+0 
+0 
+0 
+0 
+0 
+0 
+0 
+0 
+0 
+0 
+0 
+0 
