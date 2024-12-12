@@ -22,11 +22,12 @@
 			<Name><![CDATA[Main]]></Name>
 			<StartupCode><![CDATA[
 	double tamanio = file.readDouble();
-	double x = file.readDouble();
-	double y = file.readDouble();
+	double numeropatrullas = file.readDouble();
+	double numeroMotos = file.readDouble();
 	Solucion solucion =  add_solucion (tamanio); //create a new airplane agent
-	solucion.setXY( x, y ); //place it to the initial location
-	
+	solucion.setXY( numeropatrullas, numeropatrullas ); //place it to the initial location
+	numMotos= (int)numeroMotos;
+	numCarros=(int) numeropatrullas;
 	writeToLog( "Log created on " + ( new Date() ) );
 	Resultado.println( "Tiempo de llegada patrulla " + ( new Date() ) );]]></StartupCode>
 			<Generic>false</Generic>
@@ -130,10 +131,10 @@
 				<Variable Class="Parameter">
 					<Id>1725570667839</Id>
 					<Name><![CDATA[numMotos]]></Name>
-					<X>380</X><Y>-80</Y>
+					<X>130</X><Y>-100</Y>
 					<Label><X>10</X><Y>15</Y></Label>
 					<PublicFlag>false</PublicFlag>
-					<PresentationFlag>false</PresentationFlag>
+					<PresentationFlag>true</PresentationFlag>
 					<ShowLabel>true</ShowLabel>
 					<Properties SaveInSnapshot="true" ModificatorType="STATIC">
 						<Type><![CDATA[int]]></Type>
@@ -154,8 +155,8 @@
 				<Variable Class="Parameter">
 					<Id>1728429504428</Id>
 					<Name><![CDATA[numCarros]]></Name>
-					<X>530</X><Y>-80</Y>
-					<Label><X>10</X><Y>0</Y></Label>
+					<X>540</X><Y>-90</Y>
+					<Label><X>20</X><Y>-20</Y></Label>
 					<PublicFlag>false</PublicFlag>
 					<PresentationFlag>true</PresentationFlag>
 					<ShowLabel>true</ShowLabel>
@@ -280,7 +281,8 @@ PatrullaMoto moto = getNearestAgentByRoute(filter(main.patrullaMotos,
 						</RecurrenceCode>
 						<Condition><![CDATA[false]]></Condition>
 					</Properties>
-					<Action><![CDATA[writeToLog( time() + " tiempo de llegada patrulla " );]]></Action>
+					<Action><![CDATA[writeToLog( time() + " tiempo de llegada patrulla " );
+//writeToLog( solucion.tamanio() + " cai seleccionado " );]]></Action>
 				</Event>
 				<Event>
 					<Id>1728431902667</Id>
@@ -318,12 +320,13 @@ PatrullaMoto moto = getNearestAgentByRoute(filter(main.patrullaMotos,
 				<Event>
 					<Id>1732824191539</Id>
 					<Name><![CDATA[nuevoCrimen]]></Name>
+					<Description><![CDATA[agregar crimen pór fecha]]></Description>
 					<X>-110</X><Y>150</Y>
 					<Label><X>10</X><Y>0</Y></Label>
 					<PublicFlag>false</PublicFlag>
 					<PresentationFlag>true</PresentationFlag>
 					<ShowLabel>true</ShowLabel>
-					<Properties TriggerType="rate" Mode="occuresOnce">
+					<Properties TriggerType="timeout" Mode="occuresOnce">
 						<Timeout Class="CodeUnitValue">
 							<Code><![CDATA[1]]></Code>
 							<Unit Class="TimeUnits"><![CDATA[HOUR]]></Unit>
@@ -332,8 +335,8 @@ PatrullaMoto moto = getNearestAgentByRoute(filter(main.patrullaMotos,
 							<Code><![CDATA[1]]></Code>
 							<Unit Class="RateUnits"><![CDATA[PER_MINUTE]]></Unit>
 						</Rate>
-						<OccurrenceAtTime>true</OccurrenceAtTime>
-						<OccurrenceDate>1732867200000</OccurrenceDate>
+						<OccurrenceAtTime>false</OccurrenceAtTime>
+						<OccurrenceDate>1695024000000</OccurrenceDate>
 						<OccurrenceTime Class="CodeUnitValue">
 							<Code><![CDATA[0]]></Code>
 							<Unit Class="TimeUnits"><![CDATA[HOUR]]></Unit>
@@ -354,7 +357,7 @@ PatrullaMoto moto = getNearestAgentByRoute(filter(main.patrullaMotos,
 					<Id>1727987023944</Id>
 					<Name><![CDATA[writeToLog]]></Name>
 					<Description><![CDATA[Variable encargada de anotar el tiempo de salida]]></Description>
-					<X>-100</X><Y>470</Y>
+					<X>-80</X><Y>470</Y>
 					<Label><X>10</X><Y>0</Y></Label>
 					<PublicFlag>false</PublicFlag>
 					<PresentationFlag>true</PresentationFlag>
@@ -370,7 +373,7 @@ PatrullaMoto moto = getNearestAgentByRoute(filter(main.patrullaMotos,
 				<TextFile>
 					<Id>1727918539611</Id>
 					<Name><![CDATA[file]]></Name>
-					<X>-110</X><Y>190</Y>
+					<X>-240</X><Y>230</Y>
 					<Label><X>10</X><Y>0</Y></Label>
 					<PublicFlag>false</PublicFlag>
 					<PresentationFlag>true</PresentationFlag>
@@ -537,7 +540,7 @@ PatrullaMoto moto = getNearestAgentByRoute(filter(main.patrullaMotos,
 					</Parameters>
 					<ReplicationFlag>true</ReplicationFlag>
 					<Replication Class="CodeValue">
-						<Code><![CDATA[5]]></Code>
+						<Code><![CDATA[1]]></Code>
 					</Replication>
 					<CollectionType>ARRAY_LIST_BASED</CollectionType>
 					<InEnvironment>true</InEnvironment>	
@@ -3276,6 +3279,9 @@ countTime++;]]></Action>
 						<Type><![CDATA[double]]></Type>
 						<UnitType><![CDATA[NONE]]></UnitType>
 						<SdArray>false</SdArray>
+						<DefaultValue Class="CodeValue">
+							<Code><![CDATA[1]]></Code>
+						</DefaultValue>
 						<ParameterEditor>
 							<Id>1727919934676</Id>
 							<EditorContolType>TEXT_BOX</EditorContolType>

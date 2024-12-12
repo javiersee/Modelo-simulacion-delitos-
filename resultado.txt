@@ -1,0 +1,37 @@
+Log created on Thu Dec 12 10:18:59 COT 2024
+Tiempo de llegada patrulla Thu Dec 12 10:18:59 COT 2024
+0.4726249649353942 tiempo de llegada patrulla 
+2.29870682586586 tiempo de llegada patrulla 
+4.024370474842201 tiempo de llegada patrulla 
+4.639821579315228 tiempo de llegada patrulla 
+4.666335990206172 tiempo de llegada patrulla 
+6.071093537462517 tiempo de llegada patrulla 
+7.001176683154205 tiempo de llegada patrulla 
+8.526263682001476 tiempo de llegada patrulla 
+9.365577447186826 tiempo de llegada patrulla 
+10.82162584904664 tiempo de llegada patrulla 
+14.083229302814008 tiempo de llegada patrulla 
+14.60683753738476 tiempo de llegada patrulla 
+15.029692572903647 tiempo de llegada patrulla 
+17.151298323602497 tiempo de llegada patrulla 
+18.727603694397565 tiempo de llegada patrulla 
+19.70936805036456 tiempo de llegada patrulla 
+20.478641079780758 tiempo de llegada patrulla 
+21.57642307970997 tiempo de llegada patrulla 
+22.261333145233095 tiempo de llegada patrulla 
+22.262352850187593 tiempo de llegada patrulla 
+22.723745875042162 tiempo de llegada patrulla 
+22.818513762765495 tiempo de llegada patrulla 
+23.49645727491047 tiempo de llegada patrulla 
+24.20684989581224 tiempo de llegada patrulla 
+25.053651462299168 tiempo de llegada patrulla 
+26.231005331047 tiempo de llegada patrulla 
+26.269315282626447 tiempo de llegada patrulla 
+27.832381507986053 tiempo de llegada patrulla 
+28.43212483930724 tiempo de llegada patrulla 
+29.02006842876304 tiempo de llegada patrulla 
+29.55141002506317 tiempo de llegada patrulla 
+29.78815736747946 tiempo de llegada patrulla 
+30.14625243011747 tiempo de llegada patrulla 
+31.732777106231207 tiempo de llegada patrulla 
+31.98391337385856 tiempo de llegada patrulla 
