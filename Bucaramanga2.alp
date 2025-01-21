@@ -168,7 +168,7 @@
 						<UnitType><![CDATA[NONE]]></UnitType>
 						<SdArray>false</SdArray>
 						<DefaultValue Class="CodeValue">
-							<Code><![CDATA[1]]></Code>
+							<Code><![CDATA[0]]></Code>
 						</DefaultValue>
 						<ParameterEditor>
 							<Id>1728429504426</Id>
@@ -246,7 +246,7 @@
 						<Condition><![CDATA[false]]></Condition>
 					</Properties>
 					<Action><![CDATA[for ( Cai c : cais)
- c.elCrime = c.getNearestAgentByRoute(crimes);// getNearestAgentByRoute(crimes);
+ c.elCrime = c.getNearestAgentByRoute(crimes);
  //getNearestAgent(main.crimes);
 
 /*
@@ -324,7 +324,7 @@ PatrullaMoto moto = getNearestAgentByRoute(filter(main.patrullaMotos,
 					<Id>1732824191539</Id>
 					<Name><![CDATA[nuevoCrimen]]></Name>
 					<Description><![CDATA[agregar crimen pór fecha]]></Description>
-					<X>-110</X><Y>150</Y>
+					<X>-120</X><Y>170</Y>
 					<Label><X>10</X><Y>0</Y></Label>
 					<PublicFlag>false</PublicFlag>
 					<PresentationFlag>true</PresentationFlag>
@@ -671,7 +671,7 @@ PatrullaMoto moto = getNearestAgentByRoute(filter(main.patrullaMotos,
 					</StatisticsItem>
 					<InEnvironment>true</InEnvironment>	
 					<InitialSpeedCode Class="CodeUnitValue">
-						<Code><![CDATA[.5]]></Code>
+						<Code><![CDATA[.3]]></Code>
 						<Unit Class="SpeedUnits"><![CDATA[MPS]]></Unit>
 					</InitialSpeedCode>
 					<InitialLocationType>XYZ</InitialLocationType>
@@ -1805,7 +1805,7 @@ determinado*/]]></Code>
 					<PresentationFlag>true</PresentationFlag>
 					<ShowLabel>true</ShowLabel>
 					<Properties Width="100" Height="40">
-						<EntryAction><![CDATA[elCai.elCrime.llegadaPatrulla.take(this);
+						<EntryAction><![CDATA[elCai.elCrime.llegadaPatrulla.take(PatrullaMoto.this);
 //envia el agente a Crime
 if(countTime >= 1)
 {
@@ -1827,9 +1827,10 @@ if(countTime >= 1)
 					<PresentationFlag>true</PresentationFlag>
 					<ShowLabel>true</ShowLabel>
 					<Properties Width="100" Height="40">
-						<EntryAction><![CDATA[if(true){
-moveTo(elCai);
-}]]></EntryAction>
+						<EntryAction><![CDATA[elCai.location.codePoints()]]></EntryAction>
+						<ExitAction><![CDATA[//if(true){
+
+//}]]></ExitAction>
 						<FillColor>-256</FillColor>
 					</Properties>
 				</StatechartElement>
@@ -1914,7 +1915,7 @@ countTime++;]]></Action>
 					<Id>1725574506400</Id>
 					<Name><![CDATA[transition2]]></Name>
 					<X>220</X><Y>390</Y>
-					<Label><X>10</X><Y>0</Y></Label>
+					<Label><X>-10</X><Y>-65</Y></Label>
 					<PublicFlag>false</PublicFlag>
 					<PresentationFlag>true</PresentationFlag>
 					<ShowLabel>true</ShowLabel>
@@ -1937,7 +1938,7 @@ countTime++;]]></Action>
 						</Rate>
 						<MessageType><![CDATA[String]]></MessageType>
 						<DefaultTransition>true</DefaultTransition>
-						<FilterType><![CDATA[satisfies]]></FilterType>
+						<FilterType><![CDATA[unconditionally]]></FilterType>
 						<EqualsExpression><![CDATA["crimenResuelto"]]></EqualsExpression>
 						<SatisfiesExpression><![CDATA[true]]></SatisfiesExpression>
 					</Properties>	
@@ -3729,10 +3730,10 @@ if(countTimeCar >= 1)
 					<PresentationFlag>true</PresentationFlag>
 					<ShowLabel>true</ShowLabel>
 					<Properties Width="100" Height="40">
-						<EntryAction><![CDATA[if(true){
-moveTo(elCaiCar);
-}]]></EntryAction>
-						<FillColor/>
+						<ExitAction><![CDATA[//if(true){
+moveTo(elCaiCar.elCrime);
+//}]]></ExitAction>
+						<FillColor>-256</FillColor>
 					</Properties>
 				</StatechartElement>
 				<StatechartElement Class="EntryPoint" ParentState="ROOT_NODE">
@@ -3826,8 +3827,8 @@ countTimeCar++;]]></Action>
 					</Points>
 					<IconOffset>60.0</IconOffset>
 					<Properties Source="1728429711946" Target="1728429711948" Trigger="message">
-						<Action><![CDATA[//delito = 0;
-//moveTo(elCai);]]></Action>
+						<Action><![CDATA[delitoCar = 0;
+/*moveTo(elCaiCar.elCrime);*/]]></Action>
 						<Timeout Class="CodeUnitValue">
 							<Code><![CDATA[1]]></Code>
 							<Unit Class="TimeUnits"><![CDATA[HOUR]]></Unit>
@@ -3837,7 +3838,7 @@ countTimeCar++;]]></Action>
 							<Code><![CDATA[1]]></Code>
 							<Unit Class="RateUnits"><![CDATA[PER_HOUR]]></Unit>
 						</Rate>
-						<MessageType><![CDATA[String]]></MessageType>
+						<MessageType><![CDATA[Boolean]]></MessageType>
 						<DefaultTransition>true</DefaultTransition>
 						<FilterType><![CDATA[satisfies]]></FilterType>
 						<EqualsExpression><![CDATA[true]]></EqualsExpression>
