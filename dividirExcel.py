@@ -6,7 +6,7 @@ archivo = "delitos_bucaramanga_202501202158.csv"  # Cambia esto por la ruta a tu
 df = pd.read_csv(archivo)
 
 # Seleccionar 20 filas aleatorias
-muestra = df.sample(n=20)
+muestra = df.sample(n=100)
 
 # Definir la ruta a la carpeta donde quieres guardar el archivo
 directorio_destino = r"C:\Users\Hewlett Packard\Desktop\Nueva carpeta\Modelo-simulacion-delitos-"  # Ruta deseada
