@@ -168,7 +168,7 @@
 						<UnitType><![CDATA[NONE]]></UnitType>
 						<SdArray>false</SdArray>
 						<DefaultValue Class="CodeValue">
-							<Code><![CDATA[0]]></Code>
+							<Code><![CDATA[1]]></Code>
 						</DefaultValue>
 						<ParameterEditor>
 							<Id>1728429504426</Id>
@@ -210,7 +210,8 @@
 						</RecurrenceCode>
 						<Condition><![CDATA[false]]></Condition>
 					</Properties>
-					<Action><![CDATA[for (PatrullaMoto p: patrullaMotos )
+					<Action><![CDATA[//ubicacion inicial de la Moto en el Cai
+for (PatrullaMoto p: patrullaMotos )
  	p.jumpTo(p.elCai.getTargetLat(),
           p.elCai.getTargetLon());
 
@@ -245,9 +246,8 @@
 						</RecurrenceCode>
 						<Condition><![CDATA[false]]></Condition>
 					</Properties>
-					<Action><![CDATA[for ( Cai c : cais)
- c.elCrime = c.getNearestAgentByRoute(crimes);
- //getNearestAgent(main.crimes);
+					<Action><![CDATA[for ( Cai cM : cais)
+ 	cM.elCrime = cM.getNearestAgentByRoute(crimes);
 
 /*
 PatrullaMoto moto = getNearestAgentByRoute(filter(main.patrullaMotos,
@@ -316,7 +316,8 @@ PatrullaMoto moto = getNearestAgentByRoute(filter(main.patrullaMotos,
 						</RecurrenceCode>
 						<Condition><![CDATA[false]]></Condition>
 					</Properties>
-					<Action><![CDATA[for (PatrullaCarro pC: patrullaCarros)
+					<Action><![CDATA[//ubicacion inicial del carro en el Cai
+for (PatrullaCarro pC: patrullaCarros)
 	pC.jumpTo(pC.elCaiCar.getX(),
 			  pC.elCaiCar.getY());]]></Action>
 				</Event>
@@ -1112,6 +1113,23 @@ PatrullaMoto moto = getNearestAgentByRoute(filter(main.patrullaMotos,
 						<Type><![CDATA[String]]></Type>
 						<UnitType><![CDATA[NONE]]></UnitType>
 						<SdArray>false</SdArray>
+						<DefaultValue Class="DatabaseQueryCodeValue">
+							<Type>SELECT_UNIQUE_VALUE</Type>
+							<TableReference>
+								<PackageName><![CDATA[bucaramanga2]]></PackageName>
+								<ClassName><![CDATA[cai]]></ClassName>
+							</TableReference>
+							<Condition>
+								<ColumnReference>
+								</ColumnReference>
+								<Operator>EQUALS</Operator>
+							</Condition>
+							<ColumnReference>
+								<PackageName><![CDATA[bucaramanga2]]></PackageName>
+								<ClassName><![CDATA[cai]]></ClassName>
+								<ItemName><![CDATA[location]]></ItemName>
+							</ColumnReference>
+						</DefaultValue>
 						<ParameterEditor>
 							<Id>1725931050786</Id>
 							<Label><![CDATA[location]]></Label>
@@ -1805,8 +1823,10 @@ determinado*/]]></Code>
 					<PresentationFlag>true</PresentationFlag>
 					<ShowLabel>true</ShowLabel>
 					<Properties Width="100" Height="40">
-						<EntryAction><![CDATA[elCai.elCrime.llegadaPatrulla.take(PatrullaMoto.this);
+						<EntryAction><![CDATA[//elCai.elCrime.llegadaPatrulla.take(this);
 //envia el agente a Crime
+//elCai.elCrime.eliminarCrimen();
+
 if(countTime >= 1)
 {
 	varTime = time;
@@ -1827,7 +1847,7 @@ if(countTime >= 1)
 					<PresentationFlag>true</PresentationFlag>
 					<ShowLabel>true</ShowLabel>
 					<Properties Width="100" Height="40">
-						<EntryAction><![CDATA[elCai.location.codePoints()]]></EntryAction>
+						<EntryAction><![CDATA[moveTo(main.cais.get(1));]]></EntryAction>
 						<ExitAction><![CDATA[//if(true){
 
 //}]]></ExitAction>
@@ -1926,7 +1946,7 @@ countTime++;]]></Action>
 					<IconOffset>60.0</IconOffset>
 					<Properties Source="1725574095672" Target="1725574492188" Trigger="message">
 						<Action><![CDATA[//delito = 0;
-//moveTo(elCai);]]></Action>
+]]></Action>
 						<Timeout Class="CodeUnitValue">
 							<Code><![CDATA[1]]></Code>
 							<Unit Class="TimeUnits"><![CDATA[HOUR]]></Unit>
@@ -1936,9 +1956,9 @@ countTime++;]]></Action>
 							<Code><![CDATA[1]]></Code>
 							<Unit Class="RateUnits"><![CDATA[PER_HOUR]]></Unit>
 						</Rate>
-						<MessageType><![CDATA[String]]></MessageType>
+						<MessageType><![CDATA[PatrullaMoto]]></MessageType>
 						<DefaultTransition>true</DefaultTransition>
-						<FilterType><![CDATA[unconditionally]]></FilterType>
+						<FilterType><![CDATA[equalsTo]]></FilterType>
 						<EqualsExpression><![CDATA["crimenResuelto"]]></EqualsExpression>
 						<SatisfiesExpression><![CDATA[true]]></SatisfiesExpression>
 					</Properties>	
@@ -2464,6 +2484,20 @@ countTime++;]]></Action>
 					</Points>
 				</Connector>
 			</Connectors>
+			<Functions>
+				<Function AccessType="default" StaticFunction="false">
+					<ReturnModificator>VOID</ReturnModificator>
+					<ReturnType><![CDATA[double]]></ReturnType>
+					<Id>1737688774843</Id>
+					<Name><![CDATA[eliminarCrimen]]></Name>
+					<X>-90</X><Y>70</Y>
+					<Label><X>10</X><Y>0</Y></Label>
+					<PublicFlag>false</PublicFlag>
+					<PresentationFlag>true</PresentationFlag>
+					<ShowLabel>true</ShowLabel>
+					<Body><![CDATA[main.remove_crimes(this);]]></Body>
+				</Function>
+			</Functions>
 			<AgentLinks>
 				<AgentLink>
 					<Id>1725570429068</Id>
@@ -3712,7 +3746,8 @@ determinado*/]]></Code>
 					<PresentationFlag>true</PresentationFlag>
 					<ShowLabel>true</ShowLabel>
 					<Properties Width="100" Height="40">
-						<EntryAction><![CDATA[elCaiCar.elCrime.llegadaPatrullaCar.take(this);
+						<EntryAction><![CDATA[//elCaiCar.elCrime.llegadaPatrullaCar.take(this);
+elCaiCar.elCrime.eliminarCrimen();
 if(countTimeCar >= 1)
 {
 	varTimeCar = timeCar;
@@ -3730,8 +3765,9 @@ if(countTimeCar >= 1)
 					<PresentationFlag>true</PresentationFlag>
 					<ShowLabel>true</ShowLabel>
 					<Properties Width="100" Height="40">
+						<EntryAction><![CDATA[moveTo(elCaiCar);]]></EntryAction>
 						<ExitAction><![CDATA[//if(true){
-moveTo(elCaiCar.elCrime);
+
 //}]]></ExitAction>
 						<FillColor>-256</FillColor>
 					</Properties>
@@ -3827,8 +3863,8 @@ countTimeCar++;]]></Action>
 					</Points>
 					<IconOffset>60.0</IconOffset>
 					<Properties Source="1728429711946" Target="1728429711948" Trigger="message">
-						<Action><![CDATA[delitoCar = 0;
-/*moveTo(elCaiCar.elCrime);*/]]></Action>
+						<Action><![CDATA[//delitoCar = 0;
+//moveTo(elCaiCar);]]></Action>
 						<Timeout Class="CodeUnitValue">
 							<Code><![CDATA[1]]></Code>
 							<Unit Class="TimeUnits"><![CDATA[HOUR]]></Unit>
@@ -3838,10 +3874,10 @@ countTimeCar++;]]></Action>
 							<Code><![CDATA[1]]></Code>
 							<Unit Class="RateUnits"><![CDATA[PER_HOUR]]></Unit>
 						</Rate>
-						<MessageType><![CDATA[Boolean]]></MessageType>
+						<MessageType><![CDATA[PatrullaCarro]]></MessageType>
 						<DefaultTransition>true</DefaultTransition>
-						<FilterType><![CDATA[satisfies]]></FilterType>
-						<EqualsExpression><![CDATA[true]]></EqualsExpression>
+						<FilterType><![CDATA[equalsTo]]></FilterType>
+						<EqualsExpression><![CDATA["Crimen Resuelto"]]></EqualsExpression>
 						<SatisfiesExpression><![CDATA[true]]></SatisfiesExpression>
 					</Properties>	
 				</StatechartElement>
