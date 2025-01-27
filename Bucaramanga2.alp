@@ -211,9 +211,9 @@
 						<Condition><![CDATA[false]]></Condition>
 					</Properties>
 					<Action><![CDATA[//ubicacion inicial de la Moto en el Cai
-for (PatrullaMoto p: patrullaMotos )
+/*for (PatrullaMoto p: patrullaMotos )
  	p.jumpTo(p.elCai.getTargetLat(),
-          p.elCai.getTargetLon());
+          p.elCai.getTargetLon());*/
 
 ]]></Action>
 				</Event>
@@ -246,14 +246,8 @@ for (PatrullaMoto p: patrullaMotos )
 						</RecurrenceCode>
 						<Condition><![CDATA[false]]></Condition>
 					</Properties>
-					<Action><![CDATA[for ( Cai cM : cais)
- 	cM.elCrime = cM.getNearestAgentByRoute(crimes);
-
-/*
-PatrullaMoto moto = getNearestAgentByRoute(filter(main.patrullaMotos,
-         v -> v.inState(PatrullaMoto.AtCais)));*/
- 
-]]></Action>
+					<Action><![CDATA[/*for ( Cai cM : cais)
+ 	cM.elCrime = cM.getNearestAgentByRoute(crimes);*/]]></Action>
 				</Event>
 				<Event>
 					<Id>1727987107332</Id>
@@ -317,9 +311,9 @@ PatrullaMoto moto = getNearestAgentByRoute(filter(main.patrullaMotos,
 						<Condition><![CDATA[false]]></Condition>
 					</Properties>
 					<Action><![CDATA[//ubicacion inicial del carro en el Cai
-for (PatrullaCarro pC: patrullaCarros)
+/*for (PatrullaCarro pC: patrullaCarros)
 	pC.jumpTo(pC.elCaiCar.getX(),
-			  pC.elCaiCar.getY());]]></Action>
+			  pC.elCaiCar.getY());*/]]></Action>
 				</Event>
 				<Event>
 					<Id>1732824191539</Id>
@@ -463,7 +457,7 @@ for (PatrullaCarro pC: patrullaCarros)
 							<Name><![CDATA[location]]></Name>
 						</Parameter>
 					</Parameters>
-					<ReplicationFlag>true</ReplicationFlag>
+					<ReplicationFlag>false</ReplicationFlag>
 					<Replication Class="CodeValue">
 						<Code><![CDATA[10]]></Code>
 					</Replication>
@@ -558,7 +552,7 @@ for (PatrullaCarro pC: patrullaCarros)
 					</Replication>
 					<CollectionType>ARRAY_LIST_BASED</CollectionType>
 					<InEnvironment>true</InEnvironment>	
-					<InitialLocationType>XYZ</InitialLocationType>
+					<InitialLocationType>LOCATION_NAME</InitialLocationType>
 					<ColumnCode Class="CodeValue">
 						<Code><![CDATA[0]]></Code>
 					</ColumnCode>
@@ -1113,23 +1107,6 @@ for (PatrullaCarro pC: patrullaCarros)
 						<Type><![CDATA[String]]></Type>
 						<UnitType><![CDATA[NONE]]></UnitType>
 						<SdArray>false</SdArray>
-						<DefaultValue Class="DatabaseQueryCodeValue">
-							<Type>SELECT_UNIQUE_VALUE</Type>
-							<TableReference>
-								<PackageName><![CDATA[bucaramanga2]]></PackageName>
-								<ClassName><![CDATA[cai]]></ClassName>
-							</TableReference>
-							<Condition>
-								<ColumnReference>
-								</ColumnReference>
-								<Operator>EQUALS</Operator>
-							</Condition>
-							<ColumnReference>
-								<PackageName><![CDATA[bucaramanga2]]></PackageName>
-								<ClassName><![CDATA[cai]]></ClassName>
-								<ItemName><![CDATA[location]]></ItemName>
-							</ColumnReference>
-						</DefaultValue>
 						<ParameterEditor>
 							<Id>1725931050786</Id>
 							<Label><![CDATA[location]]></Label>
@@ -1611,6 +1588,18 @@ for (PatrullaCarro pC: patrullaCarros)
 						<Type><![CDATA[double]]></Type>        
 					</Properties>
 				</Variable>
+				<Variable Class="PlainVariable">
+					<Id>1738001085116</Id>
+					<Name><![CDATA[order]]></Name>
+					<X>240</X><Y>70</Y>
+					<Label><X>10</X><Y>0</Y></Label>
+					<PublicFlag>false</PublicFlag>
+					<PresentationFlag>true</PresentationFlag>
+					<ShowLabel>true</ShowLabel>
+					<Properties SaveInSnapshot="true" Constant="false" AccessType="public" StaticVariable="false">
+						<Type><![CDATA[Orden]]></Type>        
+					</Properties>
+				</Variable>
 				<Variable Class="StockVariable">
 					<Id>1725573059814</Id>
 					<Name><![CDATA[delito]]></Name>
@@ -1690,15 +1679,9 @@ for (PatrullaCarro pC: patrullaCarros)
 					<PresentationFlag>true</PresentationFlag>
 					<ShowLabel>true</ShowLabel>
 					<Properties SaveInSnapshot="true" ModificatorType="STATIC">
-						<Type><![CDATA[Cai]]></Type>
+						<Type><![CDATA[Crime]]></Type>
 						<UnitType><![CDATA[NONE]]></UnitType>
 						<SdArray>false</SdArray>
-						<DefaultValue Class="CodeValue">
-							<Code><![CDATA[main.cais.random()
-/*genera motos 
-aleatorias en un cai
-determinado*/]]></Code>
-						</DefaultValue>
 						<ParameterEditor>
 							<Id>1725571334252</Id>
 							<EditorContolType>TEXT_BOX</EditorContolType>
@@ -1793,24 +1776,13 @@ determinado*/]]></Code>
 				<StatechartElement Class="State" ParentState="ROOT_NODE">
 					<Id>1725572835023</Id>
 					<Name><![CDATA[enCai]]></Name>
-					<X>120</X><Y>140</Y>
+					<X>120</X><Y>160</Y>
 					<Label><X>30</X><Y>20</Y></Label>
 					<PublicFlag>false</PublicFlag>
 					<PresentationFlag>true</PresentationFlag>
 					<ShowLabel>true</ShowLabel>
 					<Properties Width="100" Height="40">
-						<FillColor/>
-					</Properties>
-				</StatechartElement>
-				<StatechartElement Class="State" ParentState="ROOT_NODE">
-					<Id>1725572911704</Id>
-					<Name><![CDATA[haciaCrimen]]></Name>
-					<X>120</X><Y>250</Y>
-					<Label><X>10</X><Y>20</Y></Label>
-					<PublicFlag>false</PublicFlag>
-					<PresentationFlag>true</PresentationFlag>
-					<ShowLabel>true</ShowLabel>
-					<Properties Width="100" Height="40">
+						<EntryAction><![CDATA[countTime++;]]></EntryAction>
 						<FillColor/>
 					</Properties>
 				</StatechartElement>
@@ -1823,9 +1795,10 @@ determinado*/]]></Code>
 					<PresentationFlag>true</PresentationFlag>
 					<ShowLabel>true</ShowLabel>
 					<Properties Width="100" Height="40">
-						<EntryAction><![CDATA[//elCai.elCrime.llegadaPatrulla.take(this);
+						<EntryAction><![CDATA[if(elCai != null)
+	elCai.llegadaPatrulla.take(this);
 //envia el agente a Crime
-//elCai.elCrime.eliminarCrimen();
+
 
 if(countTime >= 1)
 {
@@ -1847,9 +1820,9 @@ if(countTime >= 1)
 					<PresentationFlag>true</PresentationFlag>
 					<ShowLabel>true</ShowLabel>
 					<Properties Width="100" Height="40">
-						<EntryAction><![CDATA[moveTo(main.cais.get(1));]]></EntryAction>
+						<EntryAction><![CDATA[//moveTo(main.cais.get(1));]]></EntryAction>
 						<ExitAction><![CDATA[//if(true){
-
+time = 0;
 //}]]></ExitAction>
 						<FillColor>-256</FillColor>
 					</Properties>
@@ -1857,7 +1830,7 @@ if(countTime >= 1)
 				<StatechartElement Class="EntryPoint" ParentState="ROOT_NODE">
 					<Id>1725572825520</Id>
 					<Name><![CDATA[statechart]]></Name>
-					<X>160</X><Y>100</Y>
+					<X>160</X><Y>120</Y>
 					<Label><X>10</X><Y>0</Y></Label>
 					<PublicFlag>false</PublicFlag>
 					<PresentationFlag>true</PresentationFlag>
@@ -1872,19 +1845,20 @@ if(countTime >= 1)
 				<StatechartElement Class="Transition" ParentState="ROOT_NODE">
 					<Id>1725572927320</Id>
 					<Name><![CDATA[transition]]></Name>
-					<X>160</X><Y>180</Y>
+					<X>160</X><Y>200</Y>
 					<Label><X>10</X><Y>0</Y></Label>
 					<PublicFlag>false</PublicFlag>
 					<PresentationFlag>true</PresentationFlag>
 					<ShowLabel>false</ShowLabel>
 					<Points>
 						<Point><X>0</X><Y>0</Y></Point>
-						<Point><X>0</X><Y>70</Y></Point>
+						<Point><X>0</X><Y>170</Y></Point>
 					</Points>
-					<IconOffset>20.0</IconOffset>
-					<Properties Source="1725572835023" Target="1725572911704" Trigger="condition">
-						<Action><![CDATA[moveTo(elCai.elCrime);
-countTime++;]]></Action>
+					<IconOffset>80.0</IconOffset>
+					<Properties Source="1725572835023" Target="1725574095672" Trigger="message">
+						<Action><![CDATA[moveTo(msg.crime);
+
+order = msg;]]></Action>
 						<Timeout Class="CodeUnitValue">
 							<Code><![CDATA[1]]></Code>
 							<Unit Class="TimeUnits"><![CDATA[HOUR]]></Unit>
@@ -1894,37 +1868,7 @@ countTime++;]]></Action>
 							<Code><![CDATA[1]]></Code>
 							<Unit Class="RateUnits"><![CDATA[PER_HOUR]]></Unit>
 						</Rate>
-						<MessageType><![CDATA[Object]]></MessageType>
-						<DefaultTransition>true</DefaultTransition>
-						<FilterType><![CDATA[unconditionally]]></FilterType>
-						<EqualsExpression><![CDATA["text"]]></EqualsExpression>
-						<SatisfiesExpression><![CDATA[true]]></SatisfiesExpression>
-					</Properties>	
-				</StatechartElement>
-				<StatechartElement Class="Transition" ParentState="ROOT_NODE">
-					<Id>1725574100563</Id>
-					<Name><![CDATA[transition1]]></Name>
-					<X>160</X><Y>290</Y>
-					<Label><X>10</X><Y>0</Y></Label>
-					<PublicFlag>false</PublicFlag>
-					<PresentationFlag>true</PresentationFlag>
-					<ShowLabel>false</ShowLabel>
-					<Points>
-						<Point><X>0</X><Y>0</Y></Point>
-						<Point><X>0</X><Y>80</Y></Point>
-					</Points>
-					<IconOffset>30.0</IconOffset>
-					<Properties Source="1725572911704" Target="1725574095672" Trigger="arrival">
-						<Timeout Class="CodeUnitValue">
-							<Code><![CDATA[1]]></Code>
-							<Unit Class="TimeUnits"><![CDATA[HOUR]]></Unit>
-						</Timeout>
-						<Condition><![CDATA[true]]></Condition>
-						<Rate Class="CodeUnitValue">
-							<Code><![CDATA[1]]></Code>
-							<Unit Class="RateUnits"><![CDATA[PER_HOUR]]></Unit>
-						</Rate>
-						<MessageType><![CDATA[Object]]></MessageType>
+						<MessageType><![CDATA[Orden]]></MessageType>
 						<DefaultTransition>true</DefaultTransition>
 						<FilterType><![CDATA[unconditionally]]></FilterType>
 						<EqualsExpression><![CDATA["text"]]></EqualsExpression>
@@ -1938,15 +1882,16 @@ countTime++;]]></Action>
 					<Label><X>-10</X><Y>-65</Y></Label>
 					<PublicFlag>false</PublicFlag>
 					<PresentationFlag>true</PresentationFlag>
-					<ShowLabel>true</ShowLabel>
+					<ShowLabel>false</ShowLabel>
 					<Points>
 						<Point><X>0</X><Y>0</Y></Point>
 						<Point><X>120</X><Y>-110</Y></Point>
 					</Points>
 					<IconOffset>60.0</IconOffset>
-					<Properties Source="1725574095672" Target="1725574492188" Trigger="message">
-						<Action><![CDATA[//delito = 0;
-]]></Action>
+					<Properties Source="1725574095672" Target="1725574492188" Trigger="arrival">
+						<Action><![CDATA[//moveTo(main.distributor);
+//elCai.elCrime.eliminarCrimen();
+moveTo(main.cais);]]></Action>
 						<Timeout Class="CodeUnitValue">
 							<Code><![CDATA[1]]></Code>
 							<Unit Class="TimeUnits"><![CDATA[HOUR]]></Unit>
@@ -1973,7 +1918,7 @@ countTime++;]]></Action>
 					<ShowLabel>false</ShowLabel>
 					<Points>
 						<Point><X>0</X><Y>0</Y></Point>
-						<Point><X>-120</X><Y>-80</Y></Point>
+						<Point><X>-120</X><Y>-60</Y></Point>
 					</Points>
 					<IconOffset>80.0</IconOffset>
 					<Properties Source="1725574492188" Target="1725572835023" Trigger="arrival">
@@ -1986,7 +1931,7 @@ countTime++;]]></Action>
 							<Code><![CDATA[1]]></Code>
 							<Unit Class="RateUnits"><![CDATA[PER_HOUR]]></Unit>
 						</Rate>
-						<MessageType><![CDATA[Object]]></MessageType>
+						<MessageType><![CDATA[Orden]]></MessageType>
 						<DefaultTransition>true</DefaultTransition>
 						<FilterType><![CDATA[unconditionally]]></FilterType>
 						<EqualsExpression><![CDATA["text"]]></EqualsExpression>
@@ -2484,13 +2429,58 @@ countTime++;]]></Action>
 					</Points>
 				</Connector>
 			</Connectors>
+			<Events>
+				<Event>
+					<Id>1738000434209</Id>
+					<Name><![CDATA[patrullajeMoto]]></Name>
+					<X>-100</X><Y>100</Y>
+					<Label><X>10</X><Y>0</Y></Label>
+					<PublicFlag>false</PublicFlag>
+					<PresentationFlag>true</PresentationFlag>
+					<ShowLabel>true</ShowLabel>
+					<Properties TriggerType="rate" Mode="occuresOnce">
+						<Timeout Class="CodeUnitValue">
+							<Code><![CDATA[1]]></Code>
+							<Unit Class="TimeUnits"><![CDATA[HOUR]]></Unit>
+						</Timeout>
+						<Rate Class="CodeUnitValue">
+							<Code><![CDATA[1]]></Code>
+							<Unit Class="RateUnits"><![CDATA[PER_DAY]]></Unit>
+						</Rate>
+						<OccurrenceAtTime>true</OccurrenceAtTime>
+						<OccurrenceDate>1738051200000</OccurrenceDate>
+						<OccurrenceTime Class="CodeUnitValue">
+							<Code><![CDATA[0]]></Code>
+							<Unit Class="TimeUnits"><![CDATA[HOUR]]></Unit>
+						</OccurrenceTime>
+						<RecurrenceCode Class="CodeUnitValue">
+							<Code><![CDATA[1]]></Code>
+							<Unit Class="TimeUnits"><![CDATA[HOUR]]></Unit>
+						</RecurrenceCode>
+						<Condition><![CDATA[false]]></Condition>
+					</Properties>
+					<Action><![CDATA[//Order order = new Order(uniform_discr(10,20), this);
+/*Vehicle truck = getNearestAgentByRoute(filter(main.vehicles,
+              v -> v.inState(Vehicle.AtDistributor)));*/
+
+Orden order = new Orden(uniform_discr(10,20), this);
+PatrullaMoto mot = getNearestAgentByRoute(filter(main.patrullaMotos,
+              v -> v.inState(PatrullaMoto.enCai)));
+              
+if(mot != null)
+	send(order, mot);
+	
+/*if (truck != null)
+	send (order, truck);*/]]></Action>
+				</Event>
+			</Events>
 			<Functions>
 				<Function AccessType="default" StaticFunction="false">
 					<ReturnModificator>VOID</ReturnModificator>
 					<ReturnType><![CDATA[double]]></ReturnType>
 					<Id>1737688774843</Id>
 					<Name><![CDATA[eliminarCrimen]]></Name>
-					<X>-90</X><Y>70</Y>
+					<X>-100</X><Y>60</Y>
 					<Label><X>10</X><Y>0</Y></Label>
 					<PublicFlag>false</PublicFlag>
 					<PresentationFlag>true</PresentationFlag>
@@ -2686,7 +2676,7 @@ countTime++;]]></Action>
 							<Name><![CDATA[onExit]]></Name>
 							<Value Class="CodeValue">
 								<Code><![CDATA[send("ListoElPollo",agent);
-main.remove_crimes(this); //elimina el agente crimen
+//main.remove_crimes(this); //elimina el agente crimen
 //main.removeAgentFromContents(agent)]]></Code>
 							</Value>
 						</Parameter>
@@ -3618,7 +3608,7 @@ main.remove_crimes(this);
 						<SdArray>false</SdArray>
 						<DefaultValue Class="CodeValue">
 							<Code><![CDATA[
-main.cais.random()
+//main.cais.random()
 /*genera carros 
 aleatorios en un cai
 determinado*/]]></Code>
@@ -3801,7 +3791,7 @@ if(countTimeCar >= 1)
 					</Points>
 					<IconOffset>20.0</IconOffset>
 					<Properties Source="1728429711942" Target="1728429711944" Trigger="condition">
-						<Action><![CDATA[moveTo(elCaiCar.elCrime);
+						<Action><![CDATA[//moveTo(elCaiCar.elCrime);
 countTimeCar++;]]></Action>
 						<Timeout Class="CodeUnitValue">
 							<Code><![CDATA[1]]></Code>
@@ -4028,6 +4018,184 @@ countTimeCar++;]]></Action>
 					<Height>480</Height>
 				</Area>
 			</Areas>
+
+		</ActiveObjectClass>
+		<!--   =========   Active Object Class   ========  -->
+		<ActiveObjectClass>
+			<Id>1738000646915</Id>
+			<Name><![CDATA[Orden]]></Name>
+			<Generic>false</Generic>
+			<GenericParameter>
+				<Id>1738000646921</Id>
+				<Name><![CDATA[1738000646921]]></Name>
+				<GenericParameterValue Class="CodeValue">
+					<Code><![CDATA[T extends Agent]]></Code>
+				</GenericParameterValue>
+				<GenericParameterLabel><![CDATA[Parámetro genérico:]]></GenericParameterLabel>
+			</GenericParameter>
+			<FlowChartsUsage>ENTITY</FlowChartsUsage>
+			<SamplesToKeep>100</SamplesToKeep>
+			<LimitNumberOfArrayElements>false</LimitNumberOfArrayElements>
+			<ElementsLimitValue>100</ElementsLimitValue>
+			<MakeDefaultViewArea>true</MakeDefaultViewArea>
+			<SceneGridColor/>
+			<SceneBackgroundColor/>
+			<SceneSkybox>null</SceneSkybox>
+			<AgentProperties>
+				<EnvironmentDefinesInitialLocation>true</EnvironmentDefinesInitialLocation>
+				<RotateAnimationTowardsMovement>true</RotateAnimationTowardsMovement>
+				<RotateAnimationVertically>false</RotateAnimationVertically>
+				<VelocityCode Class="CodeUnitValue">
+					<Code><![CDATA[10]]></Code>
+					<Unit Class="SpeedUnits"><![CDATA[MPS]]></Unit>
+				</VelocityCode>
+				<PhysicalLength Class="CodeUnitValue">
+					<Code><![CDATA[1]]></Code>
+					<Unit Class="LengthUnits"><![CDATA[METER]]></Unit>
+				</PhysicalLength>
+				<PhysicalWidth Class="CodeUnitValue">
+					<Code><![CDATA[1]]></Code>
+					<Unit Class="LengthUnits"><![CDATA[METER]]></Unit>
+				</PhysicalWidth>
+				<PhysicalHeight Class="CodeUnitValue">
+					<Code><![CDATA[1]]></Code>
+					<Unit Class="LengthUnits"><![CDATA[METER]]></Unit>
+				</PhysicalHeight>
+			</AgentProperties>
+			<EnvironmentProperties>
+					<EnableSteps>false</EnableSteps>
+					<StepDurationCode Class="CodeUnitValue">
+						<Code><![CDATA[1.0]]></Code>
+						<Unit Class="TimeUnits"><![CDATA[SECOND]]></Unit>
+					</StepDurationCode>
+					<SpaceType>CONTINUOUS</SpaceType>
+					<WidthCode><![CDATA[500]]></WidthCode>
+					<HeightCode><![CDATA[500]]></HeightCode>
+					<ZHeightCode><![CDATA[0]]></ZHeightCode>
+					<ColumnsCountCode><![CDATA[100]]></ColumnsCountCode>
+					<RowsCountCode><![CDATA[100]]></RowsCountCode>
+					<NeigborhoodType>MOORE</NeigborhoodType>
+					<LayoutType>USER_DEF</LayoutType>
+					<NetworkType>USER_DEF</NetworkType>
+					<ConnectionsPerAgentCode><![CDATA[2]]></ConnectionsPerAgentCode>
+					<ConnectionsRangeCode><![CDATA[50]]></ConnectionsRangeCode>
+					<NeighborLinkFractionCode><![CDATA[0.95]]></NeighborLinkFractionCode>
+					<MCode><![CDATA[10]]></MCode>
+			</EnvironmentProperties>
+			<DatasetsCreationProperties>
+				<AutoCreate>true</AutoCreate>
+					<OccurrenceAtTime>true</OccurrenceAtTime>
+					<OccurrenceDate>1738051200000</OccurrenceDate>
+					<OccurrenceTime Class="CodeUnitValue">
+						<Code><![CDATA[0]]></Code>
+						<Unit Class="TimeUnits"><![CDATA[HOUR]]></Unit>
+					</OccurrenceTime>
+					<RecurrenceCode Class="CodeUnitValue">
+						<Code><![CDATA[1]]></Code>
+						<Unit Class="TimeUnits"><![CDATA[HOUR]]></Unit>
+					</RecurrenceCode>
+			</DatasetsCreationProperties>
+			<ScaleRuler>
+				<Id>1738000646918</Id>
+				<Name><![CDATA[scale]]></Name>
+				<X>0</X><Y>-150</Y>
+				<PublicFlag>false</PublicFlag>
+				<PresentationFlag>false</PresentationFlag>
+				<ShowLabel>false</ShowLabel>
+				<DrawMode>SHAPE_DRAW_2D3D</DrawMode>
+				<Length>100</Length>
+				<Rotation>0</Rotation>
+				<ScaleType>BASED_ON_LENGTH</ScaleType>
+				<ModelLength>10</ModelLength>
+				<LengthUnits>METER</LengthUnits>
+				<Scale>10</Scale>
+				<InheritedFromParentAgentType>true</InheritedFromParentAgentType>
+			</ScaleRuler>
+			<CurrentLevel>1738000646922</CurrentLevel>
+			<ConnectionsId>1738000646916</ConnectionsId>
+			<Variables>
+				<Variable Class="Parameter">
+					<Id>1738002261902</Id>
+					<Name><![CDATA[amount]]></Name>
+					<X>30</X><Y>20</Y>
+					<Label><X>9</X><Y>1</Y></Label>
+					<PublicFlag>false</PublicFlag>
+					<PresentationFlag>true</PresentationFlag>
+					<ShowLabel>true</ShowLabel>
+					<Properties SaveInSnapshot="true" ModificatorType="STATIC">
+						<Type><![CDATA[int]]></Type>
+						<UnitType><![CDATA[NONE]]></UnitType>
+						<SdArray>false</SdArray>
+						<ParameterEditor>
+							<Id>1738002261900</Id>
+							<EditorContolType>TEXT_BOX</EditorContolType>
+							<MinSliderValue><![CDATA[0]]></MinSliderValue>
+							<MaxSliderValue><![CDATA[100]]></MaxSliderValue>
+							<DelimeterType>NO_DELIMETER</DelimeterType>
+						</ParameterEditor>
+					</Properties>                 
+				</Variable>
+				<Variable Class="Parameter">
+					<Id>1738000698432</Id>
+					<Name><![CDATA[crime]]></Name>
+					<X>30</X><Y>70</Y>
+					<Label><X>10</X><Y>0</Y></Label>
+					<PublicFlag>false</PublicFlag>
+					<PresentationFlag>true</PresentationFlag>
+					<ShowLabel>true</ShowLabel>
+					<Properties SaveInSnapshot="true" ModificatorType="STATIC">
+						<Type><![CDATA[Crime]]></Type>
+						<UnitType><![CDATA[NONE]]></UnitType>
+						<SdArray>false</SdArray>
+						<ParameterEditor>
+							<Id>1738000698430</Id>
+							<EditorContolType>TEXT_BOX</EditorContolType>
+							<MinSliderValue><![CDATA[0]]></MinSliderValue>
+							<MaxSliderValue><![CDATA[100]]></MaxSliderValue>
+							<DelimeterType>NO_DELIMETER</DelimeterType>
+						</ParameterEditor>
+					</Properties>                 
+				</Variable>
+			</Variables>
+			<AgentLinks>
+				<AgentLink>
+					<Id>1738000646916</Id>
+					<Name><![CDATA[connections]]></Name>
+					<X>50</X><Y>-50</Y>
+					<Label><X>15</X><Y>0</Y></Label>
+					<PublicFlag>false</PublicFlag>
+					<PresentationFlag>true</PresentationFlag>
+					<ShowLabel>true</ShowLabel>
+					<HandleReceiveInConnections>false</HandleReceiveInConnections>
+					<AgentLinkType>COLLECTION_OF_LINKS</AgentLinkType>
+					<AgentLinkBidirectional>true</AgentLinkBidirectional>
+					<MessageType><![CDATA[Object]]></MessageType>
+					<LineStyle>SOLID</LineStyle>
+					<LineWidth>1</LineWidth>
+					<LineColor>-16777216</LineColor>
+					<LineZOrder>UNDER_AGENTS</LineZOrder>
+					<LineArrow>NONE</LineArrow>
+					<LineArrowPosition>END</LineArrowPosition>
+				</AgentLink>
+			</AgentLinks>
+
+
+			<Presentation>
+				<Level>
+					<Id>1738000646922</Id>
+					<Name><![CDATA[level]]></Name>
+					<X>0</X><Y>0</Y>
+					<Label><X>10</X><Y>0</Y></Label>
+					<PublicFlag>true</PublicFlag>
+					<PresentationFlag>true</PresentationFlag>
+					<ShowLabel>false</ShowLabel>
+					<DrawMode>SHAPE_DRAW_2D3D</DrawMode>
+					<Z>0</Z>
+					<LevelVisibility>DIM_NON_CURRENT</LevelVisibility>
+
+
+				</Level>
+			</Presentation>
 
 		</ActiveObjectClass>
 	</ActiveObjectClasses>
