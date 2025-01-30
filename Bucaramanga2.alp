@@ -210,12 +210,6 @@
 						</RecurrenceCode>
 						<Condition><![CDATA[false]]></Condition>
 					</Properties>
-					<Action><![CDATA[//ubicacion inicial de la Moto en el Cai
-/*for (PatrullaMoto p: patrullaMotos )
- 	p.jumpTo(p.elCai.getTargetLat(),
-          p.elCai.getTargetLon());*/
-
-]]></Action>
 				</Event>
 				<Event>
 					<Id>1725570787855</Id>
@@ -457,7 +451,7 @@
 							<Name><![CDATA[location]]></Name>
 						</Parameter>
 					</Parameters>
-					<ReplicationFlag>false</ReplicationFlag>
+					<ReplicationFlag>true</ReplicationFlag>
 					<Replication Class="CodeValue">
 						<Code><![CDATA[10]]></Code>
 					</Replication>
@@ -679,7 +673,7 @@
 					<LocationNameCode Class="CodeValue">
 						<Code><![CDATA[""]]></Code>
 					</LocationNameCode>
-					<InitializationType>SPECIFIED_NUMBER</InitializationType>
+					<InitializationType>LOAD_FROM_DATABASE</InitializationType>
 					<InitializationDatabaseTableQuery>
 						<TableReference>
 							<PackageName><![CDATA[bucaramanga2]]></PackageName>
@@ -692,12 +686,22 @@
 					<ParameterToDatabaseColumnMapping>
 						<Item>
 							<Key>
-								FAKE_PARAMETER_GIS_LOCATION_NAME_xjal
+								FAKE_PARAMETER_GIS_LOCATION_LATITUDE_xjal
 							</Key>
 							<Value>
 								<PackageName><![CDATA[bucaramanga2]]></PackageName>
 								<ClassName><![CDATA[cai]]></ClassName>
-								<ItemName><![CDATA[location]]></ItemName>
+								<ItemName><![CDATA[latitud]]></ItemName>
+							</Value>
+						</Item>
+						<Item>
+							<Key>
+								FAKE_PARAMETER_GIS_LOCATION_LONGITUDE_xjal
+							</Key>
+							<Value>
+								<PackageName><![CDATA[bucaramanga2]]></PackageName>
+								<ClassName><![CDATA[cai]]></ClassName>
+								<ItemName><![CDATA[longitud]]></ItemName>
 							</Value>
 						</Item>	
 					</ParameterToDatabaseColumnMapping>
@@ -808,7 +812,7 @@
 					<LocationNameCode Class="CodeValue">
 						<Code><![CDATA[""]]></Code>
 					</LocationNameCode>
-					<InitializationType>SPECIFIED_NUMBER</InitializationType>
+					<InitializationType>LOAD_FROM_DATABASE</InitializationType>
 					<InitializationDatabaseTableQuery>
 						<TableReference>
 							<PackageName><![CDATA[bucaramanga2]]></PackageName>
@@ -824,24 +828,22 @@
 					<ParameterToDatabaseColumnMapping>
 						<Item>
 							<Key>
-								FAKE_PARAMETER_GIS_LOCATION_NAME_xjal
+								FAKE_PARAMETER_GIS_LOCATION_LATITUDE_xjal
 							</Key>
 							<Value>
 								<PackageName><![CDATA[bucaramanga2]]></PackageName>
 								<ClassName><![CDATA[cai]]></ClassName>
-								<ItemName><![CDATA[location]]></ItemName>
+								<ItemName><![CDATA[latitud]]></ItemName>
 							</Value>
 						</Item>
 						<Item>
 							<Key>
-								<PackageName><![CDATA[bucaramanga2]]></PackageName>
-								<ClassName><![CDATA[PatrullaCarro]]></ClassName>
-								<ItemName><![CDATA[elCaiCar]]></ItemName>
+								FAKE_PARAMETER_GIS_LOCATION_LONGITUDE_xjal
 							</Key>
 							<Value>
 								<PackageName><![CDATA[bucaramanga2]]></PackageName>
 								<ClassName><![CDATA[cai]]></ClassName>
-								<ItemName><![CDATA[n_car]]></ItemName>
+								<ItemName><![CDATA[longitud]]></ItemName>
 							</Value>
 						</Item>	
 					</ParameterToDatabaseColumnMapping>
@@ -865,7 +867,7 @@
 				<GISMap>
 					<Id>1725569902822</Id>
 					<Name><![CDATA[map]]></Name>
-					<X>80</X><Y>10</Y>
+					<X>80</X><Y>0</Y>
 					<Label><X>0</X><Y>-10</Y></Label>
 					<PublicFlag>true</PublicFlag>
 					<PresentationFlag>true</PresentationFlag>
@@ -1795,10 +1797,9 @@
 					<PresentationFlag>true</PresentationFlag>
 					<ShowLabel>true</ShowLabel>
 					<Properties Width="100" Height="40">
-						<EntryAction><![CDATA[if(elCai != null)
-	elCai.llegadaPatrulla.take(this);
+						<EntryAction><![CDATA[/*if(elCai != null)
+	elCai.llegadaPatrulla.take(this);*/
 //envia el agente a Crime
-
 
 if(countTime >= 1)
 {
@@ -1806,7 +1807,9 @@ if(countTime >= 1)
 	//empieza conteo de tiempo
 }
 
-
+if(order.crime != null){
+	order.crime.deleteSelf();
+}
 ]]></EntryAction>
 						<FillColor/>
 					</Properties>
@@ -1891,7 +1894,8 @@ order = msg;]]></Action>
 					<Properties Source="1725574095672" Target="1725574492188" Trigger="arrival">
 						<Action><![CDATA[//moveTo(main.distributor);
 //elCai.elCrime.eliminarCrimen();
-moveTo(main.cais);]]></Action>
+moveTo(getNearestAgent(main.cais))
+	//moveTo(main.cais);]]></Action>
 						<Timeout Class="CodeUnitValue">
 							<Code><![CDATA[1]]></Code>
 							<Unit Class="TimeUnits"><![CDATA[HOUR]]></Unit>
@@ -2432,7 +2436,7 @@ moveTo(main.cais);]]></Action>
 			<Events>
 				<Event>
 					<Id>1738000434209</Id>
-					<Name><![CDATA[patrullajeMoto]]></Name>
+					<Name><![CDATA[patrullaje]]></Name>
 					<X>-100</X><Y>100</Y>
 					<Label><X>10</X><Y>0</Y></Label>
 					<PublicFlag>false</PublicFlag>
@@ -2444,7 +2448,7 @@ moveTo(main.cais);]]></Action>
 							<Unit Class="TimeUnits"><![CDATA[HOUR]]></Unit>
 						</Timeout>
 						<Rate Class="CodeUnitValue">
-							<Code><![CDATA[1]]></Code>
+							<Code><![CDATA[5]]></Code>
 							<Unit Class="RateUnits"><![CDATA[PER_DAY]]></Unit>
 						</Rate>
 						<OccurrenceAtTime>true</OccurrenceAtTime>
@@ -2469,6 +2473,13 @@ PatrullaMoto mot = getNearestAgentByRoute(filter(main.patrullaMotos,
               
 if(mot != null)
 	send(order, mot);
+
+Orden order2 = new Orden(uniform_discr(5,10), this);
+PatrullaCarro car = getNearestAgentByRoute(filter(main.patrullaCarros,
+              v -> v.inState(PatrullaCarro.enCaiCar)));
+              
+if(car != null)
+	send(order, car);
 	
 /*if (truck != null)
 	send (order, truck);*/]]></Action>
@@ -2961,7 +2972,7 @@ if(mot != null)
 							<Name><![CDATA[onExit]]></Name>
 							<Value Class="CodeValue">
 								<Code><![CDATA[send("ListoElPollo",agent);
-main.remove_crimes(this);
+//main.remove_crimes(this);
 //elimina el agent crimen]]></Code>
 							</Value>
 						</Parameter>
@@ -3500,7 +3511,7 @@ main.remove_crimes(this);
 				<Variable Class="PlainVariable">
 					<Id>1728429711922</Id>
 					<Name><![CDATA[countTimeCar]]></Name>
-					<X>420</X><Y>450</Y>
+					<X>420</X><Y>440</Y>
 					<Label><X>10</X><Y>0</Y></Label>
 					<PublicFlag>false</PublicFlag>
 					<PresentationFlag>true</PresentationFlag>
@@ -3522,6 +3533,18 @@ main.remove_crimes(this);
 					<ShowLabel>true</ShowLabel>
 					<Properties SaveInSnapshot="true" Constant="false" AccessType="public" StaticVariable="false">
 						<Type><![CDATA[double]]></Type>        
+					</Properties>
+				</Variable>
+				<Variable Class="PlainVariable">
+					<Id>1738250794972</Id>
+					<Name><![CDATA[orderCar]]></Name>
+					<X>230</X><Y>90</Y>
+					<Label><X>10</X><Y>0</Y></Label>
+					<PublicFlag>false</PublicFlag>
+					<PresentationFlag>true</PresentationFlag>
+					<ShowLabel>true</ShowLabel>
+					<Properties SaveInSnapshot="true" Constant="false" AccessType="public" StaticVariable="false">
+						<Type><![CDATA[Orden]]></Type>        
 					</Properties>
 				</Variable>
 				<Variable Class="StockVariable">
@@ -3603,7 +3626,7 @@ main.remove_crimes(this);
 					<PresentationFlag>true</PresentationFlag>
 					<ShowLabel>true</ShowLabel>
 					<Properties SaveInSnapshot="true" ModificatorType="STATIC">
-						<Type><![CDATA[Cai]]></Type>
+						<Type><![CDATA[Crime]]></Type>
 						<UnitType><![CDATA[NONE]]></UnitType>
 						<SdArray>false</SdArray>
 						<DefaultValue Class="CodeValue">
@@ -3689,10 +3712,10 @@ determinado*/]]></Code>
 				<Link SourceId="1728429711922" TargetId="1728429711929" Polarity="null">
 					<Height>-83.895</Height>
 					<PolarityPosition>0.95</PolarityPosition>
-					<Direction><X>114</X><Y>-100</Y></Direction>
+					<Direction><X>114</X><Y>-90</Y></Direction>
 					<Id>1728429912240</Id>
 					<Name><![CDATA[countTimeCar - timeAgent]]></Name>
-					<X>420</X><Y>450</Y>
+					<X>420</X><Y>440</Y>
 					<Label><X>10</X><Y>0</Y></Label>
 					<PublicFlag>false</PublicFlag>
 					<PresentationFlag>true</PresentationFlag>
@@ -3712,18 +3735,7 @@ determinado*/]]></Code>
 					<PresentationFlag>true</PresentationFlag>
 					<ShowLabel>true</ShowLabel>
 					<Properties Width="100" Height="40">
-						<FillColor/>
-					</Properties>
-				</StatechartElement>
-				<StatechartElement Class="State" ParentState="ROOT_NODE">
-					<Id>1728429711944</Id>
-					<Name><![CDATA[haciaCrimenCar]]></Name>
-					<X>90</X><Y>270</Y>
-					<Label><X>5</X><Y>20</Y></Label>
-					<PublicFlag>false</PublicFlag>
-					<PresentationFlag>true</PresentationFlag>
-					<ShowLabel>true</ShowLabel>
-					<Properties Width="110" Height="40">
+						<EntryAction><![CDATA[countTimeCar++;]]></EntryAction>
 						<FillColor/>
 					</Properties>
 				</StatechartElement>
@@ -3737,11 +3749,18 @@ determinado*/]]></Code>
 					<ShowLabel>true</ShowLabel>
 					<Properties Width="100" Height="40">
 						<EntryAction><![CDATA[//elCaiCar.elCrime.llegadaPatrullaCar.take(this);
-elCaiCar.elCrime.eliminarCrimen();
+//elCaiCar.elCrime.eliminarCrimen();
 if(countTimeCar >= 1)
 {
 	varTimeCar = timeCar;
+	//empiea el conteo de tiempo
 }
+
+if(orderCar.crime != null){
+	orderCar.crime.deleteSelf();
+}
+
+traceln("varTimeCar "+varTimeCar );
 ]]></EntryAction>
 						<FillColor/>
 					</Properties>
@@ -3755,9 +3774,9 @@ if(countTimeCar >= 1)
 					<PresentationFlag>true</PresentationFlag>
 					<ShowLabel>true</ShowLabel>
 					<Properties Width="100" Height="40">
-						<EntryAction><![CDATA[moveTo(elCaiCar);]]></EntryAction>
+						<EntryAction><![CDATA[//moveTo(elCaiCar);]]></EntryAction>
 						<ExitAction><![CDATA[//if(true){
-
+timeCar = 0;
 //}]]></ExitAction>
 						<FillColor>-256</FillColor>
 					</Properties>
@@ -3778,8 +3797,8 @@ if(countTimeCar >= 1)
 					</Properties>	
 				</StatechartElement>
 				<StatechartElement Class="Transition" ParentState="ROOT_NODE">
-					<Id>1728429711954</Id>
-					<Name><![CDATA[transition]]></Name>
+					<Id>1728429711956</Id>
+					<Name><![CDATA[transition1]]></Name>
 					<X>130</X><Y>200</Y>
 					<Label><X>10</X><Y>0</Y></Label>
 					<PublicFlag>false</PublicFlag>
@@ -3787,12 +3806,14 @@ if(countTimeCar >= 1)
 					<ShowLabel>false</ShowLabel>
 					<Points>
 						<Point><X>0</X><Y>0</Y></Point>
-						<Point><X>0</X><Y>70</Y></Point>
+						<Point><X>0</X><Y>190</Y></Point>
 					</Points>
-					<IconOffset>20.0</IconOffset>
-					<Properties Source="1728429711942" Target="1728429711944" Trigger="condition">
-						<Action><![CDATA[//moveTo(elCaiCar.elCrime);
-countTimeCar++;]]></Action>
+					<IconOffset>70.0</IconOffset>
+					<Properties Source="1728429711942" Target="1728429711946" Trigger="message">
+						<Action><![CDATA[
+moveTo(msg.crime);
+
+orderCar = msg;]]></Action>
 						<Timeout Class="CodeUnitValue">
 							<Code><![CDATA[1]]></Code>
 							<Unit Class="TimeUnits"><![CDATA[HOUR]]></Unit>
@@ -3802,37 +3823,7 @@ countTimeCar++;]]></Action>
 							<Code><![CDATA[1]]></Code>
 							<Unit Class="RateUnits"><![CDATA[PER_HOUR]]></Unit>
 						</Rate>
-						<MessageType><![CDATA[Object]]></MessageType>
-						<DefaultTransition>true</DefaultTransition>
-						<FilterType><![CDATA[unconditionally]]></FilterType>
-						<EqualsExpression><![CDATA["text"]]></EqualsExpression>
-						<SatisfiesExpression><![CDATA[true]]></SatisfiesExpression>
-					</Properties>	
-				</StatechartElement>
-				<StatechartElement Class="Transition" ParentState="ROOT_NODE">
-					<Id>1728429711956</Id>
-					<Name><![CDATA[transition1]]></Name>
-					<X>130</X><Y>310</Y>
-					<Label><X>10</X><Y>0</Y></Label>
-					<PublicFlag>false</PublicFlag>
-					<PresentationFlag>true</PresentationFlag>
-					<ShowLabel>false</ShowLabel>
-					<Points>
-						<Point><X>0</X><Y>0</Y></Point>
-						<Point><X>0</X><Y>80</Y></Point>
-					</Points>
-					<IconOffset>30.0</IconOffset>
-					<Properties Source="1728429711944" Target="1728429711946" Trigger="arrival">
-						<Timeout Class="CodeUnitValue">
-							<Code><![CDATA[1]]></Code>
-							<Unit Class="TimeUnits"><![CDATA[HOUR]]></Unit>
-						</Timeout>
-						<Condition><![CDATA[true]]></Condition>
-						<Rate Class="CodeUnitValue">
-							<Code><![CDATA[1]]></Code>
-							<Unit Class="RateUnits"><![CDATA[PER_HOUR]]></Unit>
-						</Rate>
-						<MessageType><![CDATA[Object]]></MessageType>
+						<MessageType><![CDATA[Orden]]></MessageType>
 						<DefaultTransition>true</DefaultTransition>
 						<FilterType><![CDATA[unconditionally]]></FilterType>
 						<EqualsExpression><![CDATA["text"]]></EqualsExpression>
@@ -3851,10 +3842,12 @@ countTimeCar++;]]></Action>
 						<Point><X>0</X><Y>0</Y></Point>
 						<Point><X>120</X><Y>-110</Y></Point>
 					</Points>
-					<IconOffset>60.0</IconOffset>
-					<Properties Source="1728429711946" Target="1728429711948" Trigger="message">
+					<IconOffset>80.0</IconOffset>
+					<Properties Source="1728429711946" Target="1728429711948" Trigger="arrival">
 						<Action><![CDATA[//delitoCar = 0;
-//moveTo(elCaiCar);]]></Action>
+//moveTo(elCaiCar);
+moveTo(getNearestAgent(main.cais))
+	//moveTo(main.cais);]]></Action>
 						<Timeout Class="CodeUnitValue">
 							<Code><![CDATA[1]]></Code>
 							<Unit Class="TimeUnits"><![CDATA[HOUR]]></Unit>
@@ -3993,7 +3986,7 @@ countTimeCar++;]]></Action>
 						</ColorMapping>
 					</ColorTable>
 					<AutoScale>true</AutoScale>
-					<Scale>1.0</Scale>
+					<Scale>0.5</Scale>
 					<Rotation>0.0</Rotation>
 					<AxisOrder>YZX_AXIS_ORDER</AxisOrder>
 					<ApplyShading>true</ApplyShading>
