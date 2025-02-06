@@ -134,7 +134,7 @@
 				<Variable Class="Parameter">
 					<Id>1725570667839</Id>
 					<Name><![CDATA[numMotos]]></Name>
-					<X>380</X><Y>-100</Y>
+					<X>380</X><Y>-90</Y>
 					<Label><X>20</X><Y>0</Y></Label>
 					<PublicFlag>false</PublicFlag>
 					<PresentationFlag>true</PresentationFlag>
@@ -339,7 +339,7 @@
 						</RecurrenceCode>
 						<Condition><![CDATA[false]]></Condition>
 					</Properties>
-					<Action><![CDATA[add_crimes();]]></Action>
+					<Action><![CDATA[//add_crimes();]]></Action>
 				</Event>
 			</Events>
 			<Functions>
@@ -483,18 +483,6 @@
 					<ParameterToDatabaseColumnMapping>
 						<Item>
 							<Key>
-								<PackageName><![CDATA[bucaramanga2]]></PackageName>
-								<ClassName><![CDATA[Cai]]></ClassName>
-								<ItemName><![CDATA[location]]></ItemName>
-							</Key>
-							<Value>
-								<PackageName><![CDATA[bucaramanga2]]></PackageName>
-								<ClassName><![CDATA[cai]]></ClassName>
-								<ItemName><![CDATA[location]]></ItemName>
-							</Value>
-						</Item>
-						<Item>
-							<Key>
 								FAKE_PARAMETER_GIS_LOCATION_LATITUDE_xjal
 							</Key>
 							<Value>
@@ -567,18 +555,6 @@
 					<QuantityColumn>
 					</QuantityColumn>
 					<ParameterToDatabaseColumnMapping>
-						<Item>
-							<Key>
-								<PackageName><![CDATA[bucaramanga2]]></PackageName>
-								<ClassName><![CDATA[Crime]]></ClassName>
-								<ItemName><![CDATA[events]]></ItemName>
-							</Key>
-							<Value>
-								<PackageName><![CDATA[bucaramanga2]]></PackageName>
-								<ClassName><![CDATA[robos]]></ClassName>
-								<ItemName><![CDATA[events]]></ItemName>
-							</Value>
-						</Item>
 						<Item>
 							<Key>
 								FAKE_PARAMETER_GIS_LOCATION_LATITUDE_xjal
@@ -866,7 +842,7 @@
 			<Presentation>
 				<GISMap>
 					<Id>1725569902822</Id>
-					<Name><![CDATA[map]]></Name>
+					<Name><![CDATA[mapaGIS]]></Name>
 					<X>80</X><Y>0</Y>
 					<Label><X>0</X><Y>-10</Y></Label>
 					<PublicFlag>true</PublicFlag>
@@ -878,8 +854,8 @@
 					<Height>480</Height>
 					<GISShapes>
 					</GISShapes>
-					<Latitude>7.109445541124959</Latitude>
-					<Longitude>-73.0925217166031</Longitude>
+					<Latitude>7.11302805266888</Latitude>
+					<Longitude>-73.067181099025</Longitude>
 					<Scale>100000</Scale>
 					<BorderColor>-4144960</BorderColor>
 					<FillColor>-1</FillColor>
@@ -1681,7 +1657,7 @@
 					<PresentationFlag>true</PresentationFlag>
 					<ShowLabel>true</ShowLabel>
 					<Properties SaveInSnapshot="true" ModificatorType="STATIC">
-						<Type><![CDATA[Crime]]></Type>
+						<Type><![CDATA[Main]]></Type>
 						<UnitType><![CDATA[NONE]]></UnitType>
 						<SdArray>false</SdArray>
 						<ParameterEditor>
@@ -1803,13 +1779,16 @@
 
 if(countTime >= 1)
 {
+	//order.crimenes.llegadaPatrulla.take(this);
 	varTime = time;
 	//empieza conteo de tiempo
+	if(order.crimenes != null){
+	order.crimenes.eliminarCrimen();
+	}
 }
 
-if(order.crime != null){
-	order.crime.deleteSelf();
-}
+
+
 ]]></EntryAction>
 						<FillColor/>
 					</Properties>
@@ -1859,7 +1838,7 @@ time = 0;
 					</Points>
 					<IconOffset>80.0</IconOffset>
 					<Properties Source="1725572835023" Target="1725574095672" Trigger="message">
-						<Action><![CDATA[moveTo(msg.crime);
+						<Action><![CDATA[moveTo(msg.crimenes);
 
 order = msg;]]></Action>
 						<Timeout Class="CodeUnitValue">
@@ -2303,7 +2282,7 @@ moveTo(getNearestAgent(main.cais))
 				<Connector>
 					<Id>1725574257916</Id>
 					<Name><![CDATA[connector]]></Name>
-					<X>130</X><Y>120</Y>
+					<X>260</X><Y>150</Y>
 					<Label><X>10</X><Y>0</Y></Label>
 					<PublicFlag>false</PublicFlag>
 					<PresentationFlag>true</PresentationFlag>
@@ -2336,7 +2315,7 @@ moveTo(getNearestAgent(main.cais))
 				<Connector>
 					<Id>1725574261187</Id>
 					<Name><![CDATA[connector1]]></Name>
-					<X>280</X><Y>120</Y>
+					<X>410</X><Y>150</Y>
 					<Label><X>10</X><Y>0</Y></Label>
 					<PublicFlag>false</PublicFlag>
 					<PresentationFlag>true</PresentationFlag>
@@ -2369,7 +2348,7 @@ moveTo(getNearestAgent(main.cais))
 				<Connector>
 					<Id>1728439731902</Id>
 					<Name><![CDATA[connector2]]></Name>
-					<X>130</X><Y>220</Y>
+					<X>260</X><Y>250</Y>
 					<Label><X>10</X><Y>0</Y></Label>
 					<PublicFlag>false</PublicFlag>
 					<PresentationFlag>true</PresentationFlag>
@@ -2402,7 +2381,7 @@ moveTo(getNearestAgent(main.cais))
 				<Connector>
 					<Id>1728439731904</Id>
 					<Name><![CDATA[connector3]]></Name>
-					<X>280</X><Y>220</Y>
+					<X>410</X><Y>250</Y>
 					<Label><X>10</X><Y>0</Y></Label>
 					<PublicFlag>false</PublicFlag>
 					<PresentationFlag>true</PresentationFlag>
@@ -2496,7 +2475,7 @@ if(car != null)
 					<PublicFlag>false</PublicFlag>
 					<PresentationFlag>true</PresentationFlag>
 					<ShowLabel>true</ShowLabel>
-					<Body><![CDATA[main.remove_crimes(this);]]></Body>
+					<Body><![CDATA[deleteSelf();]]></Body>
 				</Function>
 			</Functions>
 			<AgentLinks>
@@ -2540,7 +2519,7 @@ if(car != null)
 				<EmbeddedObject>
 					<Id>1725574244524</Id>
 					<Name><![CDATA[llegadaPatrulla]]></Name>
-					<X>110</X><Y>110</Y>
+					<X>240</X><Y>140</Y>
 					<Label><X>-5</X><Y>-15</Y></Label>
 					<PublicFlag>false</PublicFlag>
 					<PresentationFlag>true</PresentationFlag>
@@ -2666,7 +2645,7 @@ if(car != null)
 				<EmbeddedObject>
 					<Id>1725574249352</Id>
 					<Name><![CDATA[salidaPatrulla]]></Name>
-					<X>380</X><Y>110</Y>
+					<X>510</X><Y>140</Y>
 					<Label><X>-10</X><Y>-15</Y></Label>
 					<PublicFlag>false</PublicFlag>
 					<PresentationFlag>true</PresentationFlag>
@@ -2728,7 +2707,7 @@ if(car != null)
 				<EmbeddedObject>
 					<Id>1725574253515</Id>
 					<Name><![CDATA[TiempoEnDelito]]></Name>
-					<X>240</X><Y>100</Y>
+					<X>370</X><Y>130</Y>
 					<Label><X>0</X><Y>-10</Y></Label>
 					<PublicFlag>false</PublicFlag>
 					<PresentationFlag>true</PresentationFlag>
@@ -2825,7 +2804,7 @@ if(car != null)
 				<EmbeddedObject>
 					<Id>1728439731836</Id>
 					<Name><![CDATA[llegadaPatrullaCar]]></Name>
-					<X>110</X><Y>210</Y>
+					<X>240</X><Y>240</Y>
 					<Label><X>-5</X><Y>-15</Y></Label>
 					<PublicFlag>false</PublicFlag>
 					<PresentationFlag>true</PresentationFlag>
@@ -2951,7 +2930,7 @@ if(car != null)
 				<EmbeddedObject>
 					<Id>1728439731876</Id>
 					<Name><![CDATA[salidaPatrullaCar]]></Name>
-					<X>380</X><Y>210</Y>
+					<X>510</X><Y>240</Y>
 					<Label><X>-10</X><Y>-15</Y></Label>
 					<PublicFlag>false</PublicFlag>
 					<PresentationFlag>true</PresentationFlag>
@@ -3013,7 +2992,7 @@ if(car != null)
 				<EmbeddedObject>
 					<Id>1728439731888</Id>
 					<Name><![CDATA[TiempoEnDelito1]]></Name>
-					<X>240</X><Y>200</Y>
+					<X>370</X><Y>230</Y>
 					<Label><X>0</X><Y>-10</Y></Label>
 					<PublicFlag>false</PublicFlag>
 					<PresentationFlag>true</PresentationFlag>
@@ -3180,13 +3159,13 @@ if(car != null)
 				<Area>
 					<Id>1725574198956</Id>
 					<Name><![CDATA[viewArea]]></Name>
-					<X>20</X><Y>20</Y>
+					<X>230</X><Y>50</Y>
 					<Label><X>0</X><Y>-10</Y></Label>
 					<PublicFlag>false</PublicFlag>
 					<PresentationFlag>true</PresentationFlag>
 					<ShowLabel>false</ShowLabel>
 					<Title><![CDATA[]]></Title>
-					<Width>510</Width>
+					<Width>430</Width>
 					<Height>290</Height>
 				</Area>
 			</Areas>
@@ -3748,18 +3727,21 @@ determinado*/]]></Code>
 					<PresentationFlag>true</PresentationFlag>
 					<ShowLabel>true</ShowLabel>
 					<Properties Width="100" Height="40">
-						<EntryAction><![CDATA[//elCaiCar.elCrime.llegadaPatrullaCar.take(this);
-//elCaiCar.elCrime.eliminarCrimen();
+						<EntryAction><![CDATA[
 if(countTimeCar >= 1)
 {
+	//orderCar.crimenes.llegadaPatrullaCar.take(this);;
 	varTimeCar = timeCar;
 	//empiea el conteo de tiempo
+	
+	if(orderCar.crimenes != null){
+	//orderCar.crime.deleteSelf();
+		orderCar.crimenes.eliminarCrimen();
+	}
 }
 
-if(orderCar.crime != null){
-	orderCar.crime.deleteSelf();
-}
 
+traceln("patCarro" +orderCar.crimenes);
 traceln("varTimeCar "+varTimeCar );
 ]]></EntryAction>
 						<FillColor/>
@@ -3811,7 +3793,7 @@ timeCar = 0;
 					<IconOffset>70.0</IconOffset>
 					<Properties Source="1728429711942" Target="1728429711946" Trigger="message">
 						<Action><![CDATA[
-moveTo(msg.crime);
+moveTo(msg.crimenes);
 
 orderCar = msg;]]></Action>
 						<Timeout Class="CodeUnitValue">
@@ -4130,7 +4112,7 @@ moveTo(getNearestAgent(main.cais))
 				</Variable>
 				<Variable Class="Parameter">
 					<Id>1738000698432</Id>
-					<Name><![CDATA[crime]]></Name>
+					<Name><![CDATA[crimenes]]></Name>
 					<X>30</X><Y>70</Y>
 					<Label><X>10</X><Y>0</Y></Label>
 					<PublicFlag>false</PublicFlag>
@@ -4236,7 +4218,7 @@ moveTo(getNearestAgent(main.cais))
 				</TableReference>
 				<ConnectionIndex>0</ConnectionIndex>
 				<ExternalTableName><![CDATA["CAI"]]></ExternalTableName>
-				<AutoImport>false</AutoImport>
+				<AutoImport>true</AutoImport>
 			</TableImportSettings>
 			<TableImportSettings>
 				<TableReference>
@@ -4245,7 +4227,7 @@ moveTo(getNearestAgent(main.cais))
 				</TableReference>
 				<ConnectionIndex>0</ConnectionIndex>
 				<ExternalTableName><![CDATA["ROBOS"]]></ExternalTableName>
-				<AutoImport>false</AutoImport>
+				<AutoImport>true</AutoImport>
 			</TableImportSettings>
 		</ImportSettings>
 		<ExportSettings>
